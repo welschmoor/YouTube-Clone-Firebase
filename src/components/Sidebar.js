@@ -1,30 +1,29 @@
 
 
-import React from "react"
-import { IoHome, IoBookmarks } from "react-icons/io5"
-import styled from "styled-components"
+import React from 'react'
+import { IoHome, IoBookmarks } from 'react-icons/io5'
+import styled from 'styled-components'
 
 
 const Sidebar = () => {
-  return(
+  return (
     < >
-    <Wrapper>
+      <Wrapper>
 
-      <Nav>
-        <NavUL>
-          <NavLI>
-            <IconHome />
-            <p>Home</p>
-          </NavLI>
-          <NavLI>
-            <IconFavorites />
-            <p>Favorites</p>
-          </NavLI>
-        </NavUL>
+        <Nav>
+          <NavUL>
+            <NavLI>
+              <IconHome />
+              <p>Home</p>
+            </NavLI>
+            <NavLI>
+              <IconFavorites />
+              <p>Favorites</p>
+            </NavLI>
+          </NavUL>
+        </Nav>
 
-      </Nav>
-
-    </Wrapper>
+      </Wrapper>
 
     </>
   )
@@ -35,18 +34,20 @@ const Sidebar = () => {
 const Wrapper = styled.aside`
   margin-top: 60px;
  
-  background-color: ${p=>p.theme.navCol};
+  background-color: ${p => p.theme.navCol};
   min-height: 1440px;
   height: 100%;
   width: 80px;
   position: fixed;
 `
+
 const Nav = styled.nav`
 
   p {
     font-size: 0.75rem;
   }
 `
+
 const NavUL = styled.ul`
     display: flex;
     flex-direction: column;
@@ -54,6 +55,7 @@ const NavUL = styled.ul`
     list-style: none;
     margin-top: 16px;
 `
+
 const NavLI = styled.li`
     display: flex;
     flex-direction: column;
@@ -61,6 +63,7 @@ const NavLI = styled.li`
     gap: 8px;
     cursor: pointer;
 `
+
 /////////////////////////////////////////
 //      ICONS
 

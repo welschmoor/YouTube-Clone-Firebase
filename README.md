@@ -1,7 +1,9 @@
 # YouTube Clone
 
+This is my attempt to make a YouTube clone using Firebase for backend.
+gi
+CSS: `Styled Components`
 
-React with styled components
 
 ### `npm start`
 

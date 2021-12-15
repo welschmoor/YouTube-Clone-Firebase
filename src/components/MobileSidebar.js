@@ -2,42 +2,42 @@
 import React from "react"
 import styled from "styled-components"
 
-import {Hamburger, LogoWrapper, Logo} from "./Header"
-import { IconFavorites, IconHome} from "./Sidebar"
+import { Hamburger, LogoWrapper, Logo } from "./Header"
+import { IconFavorites, IconHome } from "./Sidebar"
 
 
 
 
-const MobileSidebar = ( {sideBarOpen, hamburgerClick} ) => {
-  
+const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
+
 
   //{ sideBarOpen ? <ModalPlane /> : null }
-  return( 
+  return (
     < >
-   { sideBarOpen ? <SidebarPlane onClick={hamburgerClick} /> : null }
-  <MobileWrapper style={{ "left": sideBarOpen? "0" : "-100%" }}>
-    <LogoWrapper>
-      <Hamburger onClick={hamburgerClick} />
-      <Logo>YouTube</Logo>
-    </LogoWrapper>
+      {sideBarOpen ? <SidebarPlane onClick={hamburgerClick} /> : null}
+      <MobileWrapper style={{ "left": sideBarOpen ? "0" : "-100%" }}>
+        <LogoWrapper>
+          <Hamburger onClick={hamburgerClick} />
+          <Logo>YouTube</Logo>
+        </LogoWrapper>
 
-    <NAV>
-      <UL>
-      <LI> <IconHome /> <IconTitle>Home</IconTitle> </LI>
-      <LI> <IconFavorites/> <IconTitle>Favorites</IconTitle> </LI>
-   
-      </UL>
-    </NAV>
-  </MobileWrapper>
-  </>
+        <NAV>
+          <UL>
+            <LI> <IconHome /> <IconTitle>Home</IconTitle> </LI>
+            <LI> <IconFavorites /> <IconTitle>Favorites</IconTitle> </LI>
+
+          </UL>
+        </NAV>
+      </MobileWrapper>
+    </>
   )
 }
 
 const MobileWrapper = styled.aside`
-  padding-top: 16px;
+  padding-top: 17px;
   z-index: 6;
   position: absolute;
-  background-color: ${p=>p.theme.navCol};
+  background-color: ${p => p.theme.navCol};
   width: 240px;
   top: 0;
   left: 0;
@@ -61,14 +61,14 @@ const UL = styled.ul`
 `
 const LI = styled.li`
   padding: 10px 0px;
-  padding-left: ${p=>p.theme.leftSideMargin};
+  padding-left: ${p => p.theme.leftSideMargin};
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
   
   :hover {
-    background-color: ${p=>p.theme.light2};
+    background-color: ${p => p.theme.light2};
   }
 `
 
@@ -86,4 +86,4 @@ const SidebarPlane = styled.div`
    transform: translate(-50%, -50%);
    z-index: 1;
 `
-export default MobileSidebar 
+export default MobileSidebar

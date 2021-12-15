@@ -1,13 +1,18 @@
-import React, {useState} from "react"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import React, { useState } from "react"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 import Header from "./components/Header"
 import Sidebar from "./components/Sidebar"
 import MainContent from "./components/MainContent"
-import MobileSidebar from "./components/MobileSidebar";
+import MobileSidebar from "./components/MobileSidebar"
+
+import Home from "./pages/Home"
+import About from "./pages/About"
 
 
 const GlobalStyle = createGlobalStyle`
-  * {
+  *  {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -37,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
   .hidden {
     display: none;
   }
-`;
+`
 
 
 
@@ -46,7 +51,7 @@ const darkTheme = {
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",
-  
+
   cardCol: "hsl(0, 15.183246073298434%, 37.450980392156865%)",
   textCol: "rgb(238, 238, 238)",
   textShadow: "1px 1px 1px black",
@@ -62,26 +67,30 @@ function App() {
 
   const hamburgerClick = () => {
     console.log("clicked")
-    SetSideBarOpen(p=>!p)
-}
+    SetSideBarOpen(p => !p)
+  }
+
   return (
-  
-    <ThemeProvider theme={ darkTheme } >
-     
+    <BrowserRouter >
+      <ThemeProvider theme={darkTheme} >
 
-      <GlobalStyle />
-      <Wrapper > 
-      <Header hamburgerClick={hamburgerClick} />
-      <Main >
-        <Sidebar />
-      <MainContent />
-      </Main>
-        
-      </Wrapper >
-      <MobileSidebar  sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick}/>
-  </ThemeProvider>
+        <GlobalStyle />
+        <Wrapper >
+          <Header hamburgerClick={hamburgerClick} />
+          <Main >
+            <Sidebar />
+            <Routes>
+              <Route path="/" element={<Home />} exact />
+              <Route path="/about" element={<About />} />
 
-  );
+            </Routes>
+          </Main>
+
+        </Wrapper >
+        <MobileSidebar sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick} />
+      </ThemeProvider>
+    </BrowserRouter>
+  )
 }
 
 const Wrapper = styled.div`
@@ -94,19 +103,5 @@ const Main = styled.main`
  
 `
 
-const PlaneSidebar = styled.div`
-   position: absolute;
-   background-color: rgba(46, 46, 46, 0.9);
-   left: 50%;
-   top: 50%;
-   width: 100%;
-   height: 100%;
-   transform: translate(-50%, -50%);
-   backdrop-filter: blur(2px);
-   -webkit-backdrop-filter: blur(2px);
-   z-index: 1;
 
-
-`
-
-export default App;
+export default App

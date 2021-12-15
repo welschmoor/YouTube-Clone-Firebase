@@ -1,36 +1,32 @@
 
 
-import React, {useState} from "react"
+import React from "react"
 import styled from "styled-components"
-import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSearch, IoMic  } from "react-icons/io5"
-import MobileSidebar from "./MobileSidebar"
-
-const Header = ({ hamburgerClick}) => {
+import { NavLink as NeedStylingNavLink } from "react-router-dom"
+import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSearch, IoMic } from "react-icons/io5"
 
 
+const Header = ({ hamburgerClick }) => {
 
+  return (
+    <Wrapper >
+      <LogoWrapper>
+        <Hamburger onClick={hamburgerClick} />
+        <Logo><NavLink to="/">YouTube</NavLink></Logo>
+      </LogoWrapper>
+      <SearchForm action="" >
+        <SearchButton > <SearchIcon /> </SearchButton>
+        <SearchInput type="text" name="" id="" placeholder="Search" />
+        <IconMic />
+      </SearchForm>
+      <IconWrapper>
+        <IconNotifications></IconNotifications>
+        <IconApps></IconApps>
+        <IconSettings ></IconSettings>
+      </IconWrapper>
 
-  
-
-    return(
-        <Wrapper >
-            <LogoWrapper>
-                <Hamburger onClick={hamburgerClick} />
-                <Logo>YouTube</Logo>
-            </LogoWrapper>
-            <SearchForm action="" >
-                <SearchButton > <SearchIcon /> </SearchButton>
-                <SearchInput type="text" name="" id="" placeholder="Search"   />
-                <IconMic />
-            </SearchForm>
-            <IconWrapper>
-                    <IconNotifications></IconNotifications>
-                    <IconApps></IconApps>
-                    <IconSettings ></IconSettings>
-            </IconWrapper>
-           
-        </Wrapper>
-    )
+    </Wrapper>
+  )
 }
 
 
@@ -42,7 +38,7 @@ const Wrapper = styled.header`
     position: fixed;
     width: 100%;
     display: flex;
-    background-color: ${p=>p.theme.navCol};
+    background-color: ${p => p.theme.navCol};
     display: flex;
     gap: 20px;
     align-items: center;
@@ -55,12 +51,13 @@ const Wrapper = styled.header`
 export const Logo = styled.h2`
     font-size: 1.2rem;
     font-weight: 400;
+    color: white;
 `
 export const LogoWrapper = styled.div`
     display: flex;
     gap: 20px;
 
-    margin-left: ${p=>p.theme.leftSideMargin};
+    margin-left: ${p => p.theme.leftSideMargin};
 `
 
 ////////////////////////////////////
@@ -79,7 +76,7 @@ const SearchInput = styled.input`
     border-radius: 3px;
     padding-left: 24px;
     padding-right: 48px;
-    box-shadow: ${p=> p.theme.boxShadowLight};
+    box-shadow: ${p => p.theme.boxShadowLight};
     color: ${p => p.theme.textCol};
     font-size: 20px;
 
@@ -92,9 +89,9 @@ const SearchInput = styled.input`
 const SearchButton = styled.button`
     background: none;
     border: none;
-    box-shadow: ${p=> p.theme.boxShadowLight};
+    box-shadow: ${p => p.theme.boxShadowLight};
     cursor: pointer;
-    background-color: ${p=> p.theme.secondCol};
+    background-color: ${p => p.theme.secondCol};
     border-radius: 3px;
     height: 46px;
     width: 66px;
@@ -103,6 +100,11 @@ const SearchButton = styled.button`
     :active {
         transform: scale(0.93);
     };
+`
+
+const NavLink = styled(NeedStylingNavLink)`
+  text-decoration: none;
+  color: white;
 `
 
 
@@ -139,7 +141,7 @@ const IconSettings = styled(IoSettingsOutline)`
 const SearchIcon = styled(IoSearch)`
     font-size: 1.3rem;
     cursor: pointer;
-    color: ${p => p.theme.textCol };
+    color: ${p => p.theme.textCol};
     transform: translate(1px, 2px);
 `
 const IconMic = styled(IoMic)`
