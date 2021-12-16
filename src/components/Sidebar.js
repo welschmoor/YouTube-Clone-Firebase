@@ -1,9 +1,9 @@
 
 
 import React from 'react'
-import { IoHome, IoBookmarks } from 'react-icons/io5'
+import { IoHome, IoBookmarks, IoInformationCircle } from 'react-icons/io5'
 import styled from 'styled-components'
-
+import { NavLink as NavLinkNeedsStyling } from "react-router-dom"
 
 const Sidebar = () => {
   return (
@@ -12,14 +12,28 @@ const Sidebar = () => {
 
         <Nav>
           <NavUL>
+
             <NavLI>
-              <IconHome />
-              <p>Home</p>
+              <NavLink to="/">
+                <IconHome />
+                <p>Home</p>
+              </NavLink>
             </NavLI>
+
             <NavLI>
-              <IconFavorites />
-              <p>Favorites</p>
+              <NavLink to="/favorites">
+                <IconFavorites />
+                <p>Favorites</p>
+              </NavLink>
             </NavLI>
+
+            <NavLI>
+              <NavLink to="/about">
+                <IconInfo />
+                <p>About</p>
+              </NavLink>
+            </NavLI>
+
           </NavUL>
         </Nav>
 
@@ -39,6 +53,8 @@ const Wrapper = styled.aside`
   height: 100%;
   width: 80px;
   position: fixed;
+
+  
 `
 
 const Nav = styled.nav`
@@ -62,14 +78,33 @@ const NavLI = styled.li`
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    color: white;
+    text-decoration: none;
+
+
+`
+
+const NavLink = styled(NavLinkNeedsStyling)`
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  
 `
 
 /////////////////////////////////////////
 //      ICONS
 
 export const IconHome = styled(IoHome)``
-export const IconFavorites = styled(IoBookmarks)``
+export const IconFavorites = styled(IoBookmarks)`
 
+`
+export const IconInfo = styled(IoInformationCircle)`
+  font-size: 1.6rem;
+`
 
 
 export default Sidebar

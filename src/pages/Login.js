@@ -1,14 +1,13 @@
 
-
 import styled from "styled-components"
 import { MainWrapper } from "./Home"
 
 
-const About = () => {
+const Login = () => {
   return(
-    <MainWrapper>About Page</MainWrapper>
+    <MainWrapper>Login Page</MainWrapper>
   )
 }
 
 
-export default About
+export default Login

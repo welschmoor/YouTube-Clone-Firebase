@@ -33,6 +33,7 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
   )
 }
 
+
 const MobileWrapper = styled.aside`
   padding-top: 17px;
   z-index: 6;
@@ -42,8 +43,10 @@ const MobileWrapper = styled.aside`
   top: 0;
   left: 0;
   transition: 0.3s;
+  min-height: 1440px;
   height: 100vh;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
+  
 `
 
 
@@ -59,6 +62,7 @@ const UL = styled.ul`
 
   list-style: none;
 `
+
 const LI = styled.li`
   padding: 10px 0px;
   padding-left: ${p => p.theme.leftSideMargin};
@@ -86,4 +90,5 @@ const SidebarPlane = styled.div`
    transform: translate(-50%, -50%);
    z-index: 1;
 `
+
 export default MobileSidebar

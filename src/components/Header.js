@@ -2,7 +2,7 @@
 
 import React from "react"
 import styled from "styled-components"
-import { NavLink as NeedStylingNavLink } from "react-router-dom"
+import { Link as NeedStylingNavLink } from "react-router-dom"
 import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSearch, IoMic } from "react-icons/io5"
 
 
@@ -12,7 +12,7 @@ const Header = ({ hamburgerClick }) => {
     <Wrapper >
       <LogoWrapper>
         <Hamburger onClick={hamburgerClick} />
-        <Logo><NavLink to="/">YouTube</NavLink></Logo>
+        <Logo><Link to="/">YouTube</Link></Logo>
       </LogoWrapper>
       <SearchForm action="" >
         <SearchButton > <SearchIcon /> </SearchButton>
@@ -102,7 +102,7 @@ const SearchButton = styled.button`
     };
 `
 
-const NavLink = styled(NeedStylingNavLink)`
+const Link = styled(NeedStylingNavLink)`
   text-decoration: none;
   color: white;
 `
@@ -115,6 +115,7 @@ const IconWrapper = styled.div`
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
+    
 `
 
 export const Hamburger = styled(IoMenu)`
@@ -122,6 +123,8 @@ export const Hamburger = styled(IoMenu)`
     cursor: pointer;
     min-width: 1.3rem;
     z-index: 10;
+    transition: 0.2s;
+
 `
 
 const IconNotifications = styled(IoNotificationsOutline)`

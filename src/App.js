@@ -9,6 +9,7 @@ import MobileSidebar from "./components/MobileSidebar"
 
 import Home from "./pages/Home"
 import About from "./pages/About"
+import Favorites from "./pages/Favorites"
 
 
 const GlobalStyle = createGlobalStyle`
@@ -18,13 +19,19 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    overflow-y: scroll;
+  }
+
   html, body {
     font-size: 125%;
     font-family: Arial, Helvetica, sans-serif;
     color: ${p => p.theme.textCol};
     text-shadow: ${p => p.theme.textShadow};
 
-    background-color: ${p => p.theme.bgCol};
+    background-color: ${p => p.theme.navCol};
+
+    
   }
 
   ::placeholder {
@@ -42,6 +49,23 @@ const GlobalStyle = createGlobalStyle`
   .hidden {
     display: none;
   }
+
+  .active {
+    color: #baa6f1;
+  }
+
+
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: ${p => p.theme.secondCol};
+  }
+
+  
 `
 
 
@@ -82,6 +106,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} exact />
               <Route path="/about" element={<About />} />
+              <Route path="/favorites" element={<Favorites />} />
 
             </Routes>
           </Main>
