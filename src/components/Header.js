@@ -12,7 +12,7 @@ const Header = ({ hamburgerClick }) => {
     <Wrapper >
       <LogoWrapper>
         <Hamburger onClick={hamburgerClick} />
-        <Logo><Link to="/">YouTube</Link></Logo>
+        <Logo><Link to="/" exact>YouTube</Link></Logo>
       </LogoWrapper>
       <SearchForm action="" >
         <SearchButton > <SearchIcon /> </SearchButton>

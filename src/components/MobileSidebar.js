@@ -37,7 +37,7 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
 const MobileWrapper = styled.aside`
   padding-top: 17px;
   z-index: 6;
-  position: absolute;
+  position: fixed;
   background-color: ${p => p.theme.navCol};
   width: 240px;
   top: 0;
@@ -81,7 +81,7 @@ const IconTitle = styled.h3`
 `
 
 const SidebarPlane = styled.div`
-   position: absolute;
+   position: fixed;
    background-color: rgba(0, 0, 0, 0.5);
    left: 50%;
    top: 50%;
