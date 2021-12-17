@@ -10,7 +10,9 @@ import MobileSidebar from "./components/MobileSidebar"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Favorites from "./pages/Favorites"
-
+import Signup from "./pages/Signup"
+import Login from "./pages/Login"
+import PostNewVideo from "./pages/PostNewVideo"
 
 const GlobalStyle = createGlobalStyle`
   *  {
@@ -104,9 +106,12 @@ function App() {
           <Main >
             <Sidebar />
             <Routes>
-              <Route path="/" element={<Home />} exact />
+              <Route path="/" element={<Home />} exact={true} />
               <Route path="/about" element={<About />} />
               <Route path="/favorites" element={<Favorites />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/post" element={<PostNewVideo />} />
 
             </Routes>
           </Main>

@@ -12,7 +12,7 @@ const Header = ({ hamburgerClick }) => {
     <Wrapper >
       <LogoWrapper>
         <Hamburger onClick={hamburgerClick} />
-        <Logo><Link to="/" exact>YouTube</Link></Logo>
+        <Logo><Link to="/" >YouTube</Link></Logo>
       </LogoWrapper>
       <SearchForm action="" >
         <SearchButton > <SearchIcon /> </SearchButton>
@@ -68,7 +68,7 @@ const SearchForm = styled.form`
     flex-shrink: 1;
 `
 
-const SearchInput = styled.input`
+export const SearchInput = styled.input`
     flex-shrink: 1;
     background-color: hsl(240, 7%, 10%);
     border: none;
@@ -86,7 +86,7 @@ const SearchInput = styled.input`
 
 `
 
-const SearchButton = styled.button`
+export const SearchButton = styled.button`
     background: none;
     border: none;
     box-shadow: ${p => p.theme.boxShadowLight};

@@ -14,7 +14,7 @@ const Sidebar = () => {
           <NavUL>
 
             <NavLI>
-              <NavLink exact to="/">
+              <NavLink to="/">
                 <IconHome />
                 <p>Home</p>
               </NavLink>

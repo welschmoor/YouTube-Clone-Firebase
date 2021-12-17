@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { auth } from '../firebase/config'
+import { auth, storage, firestore } from '../firebase/'
 import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
@@ -8,10 +8,12 @@ export const useSignup = () => {
   const [isPending, setIsPending] = useState(false)
   const { dispatch } = useAuthContext()
 
-  const signup = async (email, password, displayName) => {
+
+
+  const signup = async (email, password, displayName, avatar) => {
     setError(null)
     setIsPending(true)
-  
+
     try {
       // signup
       const res = await auth.createUserWithEmailAndPassword(email, password)
@@ -20,8 +22,20 @@ export const useSignup = () => {
         throw new Error('Could not complete signup')
       }
 
+      // update user Avatar. First this creates a folder with user uid as subfolder
+      const uploadPath = `thumbnails/${res.user.uid}/${avatar.name}`
+      const imgRes = await storage.ref(uploadPath).put(avatar)   // we select where we want to store, and then we put it
+      const imgUrl = await imgRes.ref.getDownloadURL()
+
       // add display name to user
-      await res.user.updateProfile({ displayName })
+      await res.user.updateProfile({ displayName, photoURL: imgUrl })
+
+      // create user collection with a doc inside for each user :
+      await firestore.collection('users').doc(res.user.uid).set({
+        online: true,
+        displayName: displayName,
+        photoURL: imgUrl,
+      })
 
       // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
@@ -30,8 +44,8 @@ export const useSignup = () => {
         setIsPending(false)
         setError(null)
       }
-    } 
-    catch(err) {
+    }
+    catch (err) {
       if (!isCancelled) {
         setError(err.message)
         setIsPending(false)
