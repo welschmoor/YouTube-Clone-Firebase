@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { MainWrapper } from "./Home"
 import { SearchButton, SearchInput } from "../components/Header"
-import { useSignup } from "../hooks/useSignup"
+import { useLogin } from "../hooks/useLogin"
 import { Grid, Title, Form, LabelInputGroup, Input, SignUpBtn, Label } from "./Signup"
 
 
@@ -12,13 +12,16 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
 
-  const { signup, usPending, error } = useSignup()
+  const { login, isPending, error } = useLogin()
 
 
   const submitHandler = e => {
     e.preventDefault()
    
     console.log("login submitted")
+
+    login(email, password)
+    
   }
 
 

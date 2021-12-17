@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate, Redirect } from "react-router-dom"
+import { useAuthContext } from "./hooks/useAuthContext"
 
 import Header from "./components/Header"
 import Sidebar from "./components/Sidebar"
@@ -13,6 +14,8 @@ import Favorites from "./pages/Favorites"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import PostNewVideo from "./pages/PostNewVideo"
+
+
 
 const GlobalStyle = createGlobalStyle`
   *  {
@@ -90,6 +93,7 @@ const darkTheme = {
 
 function App() {
   const [sideBarOpen, SetSideBarOpen] = useState(false)
+  const { user, authIsReady } = useAuthContext()
 
   const hamburgerClick = () => {
     console.log("clicked")
@@ -105,15 +109,18 @@ function App() {
           <Header hamburgerClick={hamburgerClick} />
           <Main >
             <Sidebar />
-            <Routes>
-              <Route path="/" element={<Home />} exact={true} />
-              <Route path="/about" element={<About />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/post" element={<PostNewVideo />} />
+            {authIsReady && (
+              <Routes>
+                <Route path="/" element={<Home />} exact={true} />
+                <Route path="/about" element={<About />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/signup" element={!user && <Signup />} />
+                <Route path="/login" element={!user && <Login />} />
+                <Route path="/post" element={<PostNewVideo />} />
 
-            </Routes>
+              </Routes>
+            )}
+
           </Main>
 
         </Wrapper >

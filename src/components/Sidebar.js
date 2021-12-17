@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { NavLink as NavLinkNeedsStyling } from "react-router-dom"
 
 const Sidebar = () => {
+  
   return (
     < >
       <Wrapper>

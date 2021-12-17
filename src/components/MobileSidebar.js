@@ -2,6 +2,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useLogout } from "../hooks/useLogout"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 import { Hamburger, LogoWrapper, Logo } from "./Header"
 import { IconFavorites, IconHome } from "./Sidebar"
@@ -12,6 +13,7 @@ import { NavLink } from "react-router-dom"
 
 const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
   const { logout, isPending, error } = useLogout()
+  const { user, authIsReady } = useAuthContext()
 
   //{ sideBarOpen ? <ModalPlane /> : null }
   return (
@@ -22,9 +24,9 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
           <Hamburger onClick={hamburgerClick} />
           <Logo>YouTube</Logo>
         </LogoWrapper>
-        <NavLink to="/signup" onClick={hamburgerClick} >Sign Up</NavLink>
-        <NavLink to="/login" onClick={hamburgerClick} >Log In</NavLink>
-        {!isPending && <button onClick={logout} >Log Out</button>}
+        {!user &&  <NavLink to="/signup" onClick={hamburgerClick} >Sign Up</NavLink>}
+        {!user && <NavLink to="/login" onClick={hamburgerClick} >Log In</NavLink>}
+        {user && <button onClick={logout} >Log Out</button>}
         <NAV>
           <UL>
             <LI> <IconHome /> <IconTitle>Home</IconTitle> </LI>

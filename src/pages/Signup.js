@@ -12,7 +12,7 @@ const Signup = () => {
   const [displayName, setDisplayName] = useState('')
   const [avatar, setAvatar] = useState(null)
   const [avatarError, setAvatarError] = useState(null)
-  const { signup, usPending, error } = useSignup()
+  const { signup, isPending, error } = useSignup()
 
 
   const fileInputHandler = (e) => {
