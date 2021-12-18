@@ -15,7 +15,7 @@ const About = () => {
       &nbsp;&nbsp; For this reason I decided to try to create something similar to learn from it. But have I failed or succeeded, you will be the judge.
       </P>
       <P> &nbsp;&nbsp; This website was made using React and Firebase. The styling was done using styled components. The routing using React Router V6.
-        Very little was actually copied, I've chosen my own colors, fonts and icons. The color of the scrollbar was handled better than the original (they use the background-color of the body for the scrollbar, which is a bit ugly. For the bg color of the scrollbar I've used the same color as the main navbar. )
+        Very little was copied from the original, I've chosen my own colors, fonts and icons. The color of the scrollbar was handled better than the original (they use the background-color of the body for the scrollbar, which is a bit ugly. For the bg color of the scrollbar I've used the same color as the main navbar. )
       </P>
     </MainWrapper>
 

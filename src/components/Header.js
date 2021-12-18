@@ -15,7 +15,7 @@ const Header = ({ hamburgerClick }) => {
         <Logo><Link to="/" >YouTube</Link></Logo>
       </LogoWrapper>
       <SearchForm action="" >
-        <SearchButton > <SearchIcon /> </SearchButton>
+        <SearchButton name="search_button" aria-label="search_button" > <SearchIcon /> </SearchButton>
         <SearchInput type="text" name="" id="" placeholder="Search" />
         <IconMic />
       </SearchForm>

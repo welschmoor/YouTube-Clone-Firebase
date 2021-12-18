@@ -80,7 +80,7 @@ const LogOutTitle = styled.h3`
   font-size: 1rem;
 `
 
-const Separator = styled.div`
+export const Separator = styled.div`
   padding: 1px 20px;
   background-color: ${p => p.theme.light2};
 `

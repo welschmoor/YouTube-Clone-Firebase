@@ -13,7 +13,7 @@ import About from "./pages/About"
 import Favorites from "./pages/Favorites"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
-import PostNewVideo from "./pages/PostNewVideo"
+import CreateNewVideo from "./pages/CreateNewVideo"
 
 
 
@@ -89,6 +89,8 @@ const darkTheme = {
   buttonBg: "linear-gradient(180deg, #bbdfbb 0%, #8eb68e 100%)",
   hideSidebar: "none",
   leftSideMargin: "27px",
+
+  activeCol: "#baa6f1",
 }
 
 
@@ -117,7 +119,7 @@ function App() {
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-                <Route path="/post" element={<PostNewVideo />} />
+                <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
 
               </Routes>
             )}

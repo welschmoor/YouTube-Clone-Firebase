@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { IoHome, IoBookmarks, IoInformationCircle } from 'react-icons/io5'
+import { IoHome, IoBookmarks, IoInformationCircle, IoAddCircle } from 'react-icons/io5'
 import styled from 'styled-components'
 import { NavLink as NavLinkNeedsStyling } from "react-router-dom"
 
@@ -99,9 +99,14 @@ const NavLink = styled(NavLinkNeedsStyling)`
 /////////////////////////////////////////
 //      ICONS
 
-export const IconHome = styled(IoHome)``
+export const IconHome = styled(IoHome)`
+  font-size: 1.25rem;
+`
+export const CreateNewIcon = styled(IoAddCircle)`
+  font-size: 1.25rem;
+`
 export const IconFavorites = styled(IoBookmarks)`
-
+  font-size: 1.25rem;
 `
 export const IconInfo = styled(IoInformationCircle)`
   font-size: 1.6rem;

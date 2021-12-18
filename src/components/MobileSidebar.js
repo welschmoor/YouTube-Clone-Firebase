@@ -5,10 +5,14 @@ import { useLogout } from "../hooks/useLogout"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 import { Hamburger, LogoWrapper, Logo } from "./Header"
-import { IconFavorites, IconHome } from "./Sidebar"
+import { IconFavorites, IconHome, CreateNewIcon } from "./Sidebar"
+import { Separator } from "./Profile"
+
+
+import SignupLogin from "./SignupLogin"
 import Profile from "./Profile.js"
 
-import { NavLink } from "react-router-dom"
+import { NavLink as NavLinkToStyle, Navigate } from "react-router-dom"
 
 
 
@@ -26,14 +30,16 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
           <Logo>YouTube</Logo>
         </LogoWrapper>
 
-        {user && <Profile logout={logout} src={user.photoURL} username={user.displayName} /> }
-      
-        {!user &&  <NavLink to="/signup" onClick={hamburgerClick} >Sign Up</NavLink>}
-        {!user && <NavLink to="/login" onClick={hamburgerClick} >Log In</NavLink>}
+        {user && <Profile logout={logout} src={user.photoURL} username={user.displayName} />}
+
+
+        {!user && <SignupLogin onClick={hamburgerClick} />}
         <NAV>
           <UL>
-            <LI> <IconHome /> <IconTitle>Home</IconTitle> </LI>
-            <LI> <IconFavorites /> <IconTitle>Favorites</IconTitle> </LI>
+            <LI> <NavLink to="/">  <IconHome /> <IconTitle>Home</IconTitle>  </NavLink>  </LI>
+            <LI>  <NavLink to="/favorites"> <IconFavorites /> <IconTitle>Favorites</IconTitle> </NavLink> </LI>
+            <Separator style={{ margin: "30px 0px", }} />
+            {user && <LI> <NavLink to="/create"> <CreateNewIcon /> <IconTitle>Upload Video</IconTitle> </NavLink> </LI>}
 
           </UL>
         </NAV>
@@ -41,12 +47,6 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
     </>
   )
 }
-
-
-
-
-
-
 
 
 const MobileWrapper = styled.aside`
@@ -63,7 +63,6 @@ const MobileWrapper = styled.aside`
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
   
 `
-
 
 const NAV = styled.nav`
   margin-top: 30px;
@@ -91,19 +90,29 @@ const LI = styled.li`
   }
 `
 
+const NavLink = styled(NavLinkToStyle)`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: white;
+
+
+`
+
 const IconTitle = styled.h3`
   font-size: 1rem;
 `
 
 const SidebarPlane = styled.div`
-   position: fixed;
-   background-color: rgba(0, 0, 0, 0.5);
-   left: 50%;
-   top: 50%;
-   width: 100%;
-   height: 100%;
-   transform: translate(-50%, -50%);
-   z-index: 1;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 `
 
 export default MobileSidebar
