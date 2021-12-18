@@ -3,19 +3,33 @@ import { useState } from "react"
 import styled from "styled-components"
 import { MainWrapper as MainWrapperStyle } from "./Home"
 import { Grid, Form as FormToStyle, LabelInputGroup as LabelInputGroupUnstyled, Input, SignUpBtn, Label } from "./Signup"
-
+import { timestamp } from "../firebase"
 
 const CreateNewVideo = () => {
   const [videoTitle, setVideoTitle] = useState('')
   const [videoDescription, setVideoDescription] = useState('')
   const [file, setFile] = useState(null)
   const [fileError, setFileError] = useState(null)
+  const [error, setError] = useState(null)
   const [category, setCategory] = useState('')
 
 
   const submitHandler = e => {
     e.preventDefault()
 
+    if (!videoTitle || !videoDescription || !file) {
+      setError("Fill out all fields of the form!")
+      console.log("If you see this message, it means either the file, title or video description do not exist")
+      return
+    }
+
+    const newVideo = {
+      videoTitle,
+      videoDescription,
+      file,
+      created: timestamp.fromDate(new Date()),
+      likes: 0,
+    }
 
   }
 
@@ -30,7 +44,7 @@ const CreateNewVideo = () => {
       setFileError('Please, select a file')
       return
     }
-    if (!file.type.includes("video")) {
+    if (!file.type.includes("video/mp4")) {
       setFileError('Only .mp4 allowed!')
       return
     }
@@ -44,9 +58,11 @@ const CreateNewVideo = () => {
 
   return (
     <MainWrapper>
+      {fileError && <div>{fileError}</div>}
+      {error && <div>{error}</div>}
       <Title>Upload a New Video!</Title>
       <ContentWrapper>
-        <Form name="upload-video-form" >
+        <Form name="upload-video-form" onSubmit={submitHandler} >
           <LabelInputGroup>
             <Label htmlFor="video-title">Video Title</Label>
             <Input type="text" name="video-title" id="video-title" required onChange={(e) => setVideoTitle(e.target.value)} value={videoTitle} />
@@ -56,11 +72,14 @@ const CreateNewVideo = () => {
             <Input type="text" name="video-description" id="video-description" required onChange={(e) => setVideoDescription(e.target.value)} value={videoDescription} />
           </LabelInputGroup>
           <LabelInputGroup>
-            <Label htmlFor="avatar">Upload Avatar Picture</Label>
-            <Input type="file" name="avatar" id="file" avatar onChange={fileInputHandler} />
+            <Label htmlFor="videofile">Choose You Video</Label>
+            <Input type="file" name="videofile" id="videofile" onChange={fileInputHandler} required />
+          </LabelInputGroup>
+          <LabelInputGroup>
+            <SignUpBtn>Upload Video</SignUpBtn>
           </LabelInputGroup>
         </Form>
-        
+
       </ContentWrapper>
     </MainWrapper>
   )

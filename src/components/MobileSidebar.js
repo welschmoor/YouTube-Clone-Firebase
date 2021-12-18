@@ -57,7 +57,7 @@ const MobileWrapper = styled.aside`
   width: 240px;
   top: 0;
   left: 0;
-  transition: 0.3s;
+  transition: 0.25s;
   min-height: 1440px;
   height: 100vh;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
