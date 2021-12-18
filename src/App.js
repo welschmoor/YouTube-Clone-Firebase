@@ -7,6 +7,7 @@ import Header from "./components/Header"
 import Sidebar from "./components/Sidebar"
 import MainContent from "./components/MainContent"
 import MobileSidebar from "./components/MobileSidebar"
+import Footer from "./components/Footer"
 
 import Home from "./pages/Home"
 import About from "./pages/About"
@@ -14,7 +15,6 @@ import Favorites from "./pages/Favorites"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CreateNewVideo from "./pages/CreateNewVideo"
-
 
 
 const GlobalStyle = createGlobalStyle`
@@ -125,7 +125,7 @@ function App() {
             )}
 
           </Main>
-
+          <Footer />
         </Wrapper >
         <MobileSidebar sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick} />
       </ThemeProvider>

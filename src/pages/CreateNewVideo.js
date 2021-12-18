@@ -1,22 +1,32 @@
 
 import { useState } from "react"
 import styled from "styled-components"
+import { storage, timestamp, firestore } from "../firebase"
+import { useNavigate } from "react-router-dom"
+
 import { MainWrapper as MainWrapperStyle } from "./Home"
 import { Grid, Form as FormToStyle, LabelInputGroup as LabelInputGroupUnstyled, Input, SignUpBtn, Label } from "./Signup"
-import { timestamp } from "../firebase"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { useFirestore } from "../hooks/useFirestore"
 
 
 const CreateNewVideo = () => {
+
+  const { addDocument, response } = useFirestore('videos')
   const [videoTitle, setVideoTitle] = useState('')
   const [videoDescription, setVideoDescription] = useState('')
   const [file, setFile] = useState(null)
+  const [thumbnail, setThumbnail] = useState(null)
   const [fileError, setFileError] = useState(null)
+
+
   const [error, setError] = useState(null)
   const [category, setCategory] = useState('')
   const { user } = useAuthContext()
 
-  const submitHandler = e => {
+  const navigate = useNavigate()
+
+  const submitHandler = async e => {
     e.preventDefault()
 
     if (!videoTitle || !videoDescription || !file) {
@@ -24,8 +34,6 @@ const CreateNewVideo = () => {
       console.log("If you see this message, it means either the file, title or video description do not exist")
       return
     }
-
-    console.log("UID and ID:::", user.uid, user.id)
 
     const createdBy = {
       photoURL: user.photoURL,
@@ -39,11 +47,40 @@ const CreateNewVideo = () => {
       file,
       comments: [],
       views: 0,
-      created: timestamp.fromDate(new Date()),
       likes: 0,
       createdBy: createdBy,
     }
 
+    console.log("newVideo", newVideo)
+    try {
+
+      // this is for storing the video in Firebase Storage.
+      const uploadPath = `videos/${file.name}`
+      const videoResponse = await storage.ref(uploadPath).put(file)
+      const videoUrl = await videoResponse.ref.getDownloadURL()
+
+      const uploadPath2 = `thumbnails/${thumbnail.name}`
+      const thumbnailResponse = await storage.ref(uploadPath2).put(thumbnail)
+      const thumbnailUrl = await thumbnailResponse.ref.getDownloadURL()
+
+      await firestore.collection('videos').doc(user.uid).set({
+        videoTitle,
+        videoDescription,
+        videoURL: videoUrl,
+        thumbnailURL: thumbnailUrl,
+        comments: [],
+        views: 0,
+        likes: 0,
+        createdBy: createdBy,
+      })
+
+      navigate('/')
+      console.log("Video Submitted")
+    }
+    catch (error) {
+      console.log("SubmitVideoError:", error)
+      setError(error.message)
+    }
   }
 
 
@@ -62,13 +99,39 @@ const CreateNewVideo = () => {
       return
     }
     if (file.size > 10000000) {
-      setFileError('max file size: 10mb')
+      setFileError('max file size: 10 MB')
       return
     }
 
     setFile(file)
   }
 
+
+  const thumbnailInputHandler = (e) => {
+    setThumbnail(null)
+    setFileError(null)
+    let file = e.target.files[0]
+    console.log(file)
+
+    if (!file) {
+      setFileError('Please, select a thumbnail')
+      return
+    }
+    if (!file.type.includes("image/jpg")) {
+      setFileError('Only .jpg allowed!')
+      return
+    }
+    if (file.size > 1000000) {
+      setFileError('max file size: 1 MB')
+      return
+    }
+
+    setThumbnail(file)
+  }
+
+
+
+  
   return (
     <MainWrapper>
       {fileError && <div>{fileError}</div>}
@@ -87,6 +150,10 @@ const CreateNewVideo = () => {
           <LabelInputGroup>
             <Label htmlFor="videofile">Choose You Video</Label>
             <Input type="file" name="videofile" id="videofile" onChange={fileInputHandler} required />
+          </LabelInputGroup>
+          <LabelInputGroup>
+            <Label htmlFor="thumbnail">Choose Thumbnail</Label>
+            <Input type="file" name="thumbnail" id="thumbnail" onChange={thumbnailInputHandler} required />
           </LabelInputGroup>
           <LabelInputGroup>
             <SignUpBtn>Upload Video</SignUpBtn>
