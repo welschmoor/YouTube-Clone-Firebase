@@ -30,7 +30,7 @@ const MainWrapper = styled(AboutWrapper)`
 `
 
 const Title = styled.h4`
-margin-top: 10px;
+  margin-top: 10px;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
