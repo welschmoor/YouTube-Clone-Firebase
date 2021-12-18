@@ -6,6 +6,7 @@ import { useAuthContext } from "../hooks/useAuthContext"
 
 import { Hamburger, LogoWrapper, Logo } from "./Header"
 import { IconFavorites, IconHome } from "./Sidebar"
+import Profile from "./Profile.js"
 
 import { NavLink } from "react-router-dom"
 
@@ -24,9 +25,11 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
           <Hamburger onClick={hamburgerClick} />
           <Logo>YouTube</Logo>
         </LogoWrapper>
+
+        {user && <Profile logout={logout} src={user.photoURL} username={user.displayName} /> }
+      
         {!user &&  <NavLink to="/signup" onClick={hamburgerClick} >Sign Up</NavLink>}
         {!user && <NavLink to="/login" onClick={hamburgerClick} >Log In</NavLink>}
-        {user && <button onClick={logout} >Log Out</button>}
         <NAV>
           <UL>
             <LI> <IconHome /> <IconTitle>Home</IconTitle> </LI>
@@ -38,6 +41,12 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
     </>
   )
 }
+
+
+
+
+
+
 
 
 const MobileWrapper = styled.aside`
@@ -57,7 +66,7 @@ const MobileWrapper = styled.aside`
 
 
 const NAV = styled.nav`
-  margin-top: 80px;
+  margin-top: 30px;
 
 `
 

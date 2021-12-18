@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import { BrowserRouter, Routes, Route, Navigate, Redirect } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { useAuthContext } from "./hooks/useAuthContext"
 
 import Header from "./components/Header"
@@ -78,6 +78,7 @@ const GlobalStyle = createGlobalStyle`
 const darkTheme = {
   navCol: "rgb(40, 40, 46);",
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
+  thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%);",
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",
 
@@ -114,8 +115,8 @@ function App() {
                 <Route path="/" element={<Home />} exact={true} />
                 <Route path="/about" element={<About />} />
                 <Route path="/favorites" element={<Favorites />} />
-                <Route path="/signup" element={!user && <Signup />} />
-                <Route path="/login" element={!user && <Login />} />
+                <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
                 <Route path="/post" element={<PostNewVideo />} />
 
               </Routes>
