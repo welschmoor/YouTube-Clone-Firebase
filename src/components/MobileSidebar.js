@@ -78,8 +78,8 @@ const UL = styled.ul`
 `
 
 const LI = styled.li`
-  padding: 10px 0px;
-  padding-left: ${p => p.theme.leftSideMargin};
+  padding: 0px 0px;
+  padding-left: 0;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -96,7 +96,9 @@ const NavLink = styled(NavLinkToStyle)`
   gap: 20px;
   text-decoration: none;
   color: white;
-
+  padding: 10px 0px;
+  width: 100%;
+  padding-left: ${p => p.theme.leftSideMargin};
 
 `
 

@@ -4,6 +4,8 @@ import styled from "styled-components"
 import { MainWrapper as MainWrapperStyle } from "./Home"
 import { Grid, Form as FormToStyle, LabelInputGroup as LabelInputGroupUnstyled, Input, SignUpBtn, Label } from "./Signup"
 import { timestamp } from "../firebase"
+import { useAuthContext } from "../hooks/useAuthContext"
+
 
 const CreateNewVideo = () => {
   const [videoTitle, setVideoTitle] = useState('')
@@ -12,7 +14,7 @@ const CreateNewVideo = () => {
   const [fileError, setFileError] = useState(null)
   const [error, setError] = useState(null)
   const [category, setCategory] = useState('')
-
+  const { user } = useAuthContext()
 
   const submitHandler = e => {
     e.preventDefault()
@@ -23,12 +25,23 @@ const CreateNewVideo = () => {
       return
     }
 
+    console.log("UID and ID:::", user.uid, user.id)
+
+    const createdBy = {
+      photoURL: user.photoURL,
+      displayName: user.displayName,
+      id: user.uid,
+    }
+
     const newVideo = {
       videoTitle,
       videoDescription,
       file,
+      comments: [],
+      views: 0,
       created: timestamp.fromDate(new Date()),
       likes: 0,
+      createdBy: createdBy,
     }
 
   }
