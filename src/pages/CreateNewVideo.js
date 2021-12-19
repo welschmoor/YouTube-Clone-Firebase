@@ -66,7 +66,7 @@ const CreateNewVideo = () => {
       const thumbnailResponse = await storage.ref(uploadPath2).put(thumbnail)
       const thumbnailUrl = await thumbnailResponse.ref.getDownloadURL()
 
-      await firestore.collection('videos').doc(user.uid).set({
+      await firestore.collection('videos').add({
         videoTitle,
         videoDescription,
         videoURL: videoUrl,

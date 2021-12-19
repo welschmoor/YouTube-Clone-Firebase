@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { NavLink as NavLinkNeedsStyling } from "react-router-dom"
 
 const Sidebar = () => {
-  
+
   return (
     < >
       <Wrapper>
@@ -55,6 +55,9 @@ const Wrapper = styled.aside`
   width: 80px;
   position: fixed;
 
+  @media (max-width: 700px ) {
+    display: none;
+  }
   
 `
 

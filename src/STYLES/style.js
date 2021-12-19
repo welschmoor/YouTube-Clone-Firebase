@@ -41,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .active {
-    color: #baa6f1;
+    color: #baa6f1 !important;
   }
 
   ::-webkit-scrollbar {
@@ -61,6 +61,7 @@ export const darkTheme = {
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
   thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%);",
   fourthCol: "rgb(158, 158, 168)",
+  fifthCol: "hsl(240, 6.976744186046512%, 39.862745098039216%);",
 
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",

@@ -11,15 +11,13 @@ const Home = () => {
 
   return (
     <MainWrapper>
-      {documents && documents.map(e => {
-        return (
-          <VideoThumbnailCard e={e} key={e.id} />
-
-        )
-      })}
-
- 
-
+      <HomeGrid >
+        {documents && documents.map(e => {
+          return (
+            <VideoThumbnailCard e={e} key={e.id} />
+          )
+        })}
+      </HomeGrid>
     </MainWrapper>
   )
 }
@@ -27,6 +25,25 @@ const Home = () => {
 export const MainWrapper = styled.div`
   padding: 80px 20px 20px 100px;
   background-color: rgb(30, 30, 36);
+
+  @media (max-width: 700px ) {
+    padding: 80px 20px 20px 20px;
+  }
+
+`
+
+const HomeGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 60px;
+
+  @media (max-width: 1158px ) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 800px ) {
+    grid-template-columns: 1fr;
+  }
 `
 
 

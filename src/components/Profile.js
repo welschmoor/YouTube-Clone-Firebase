@@ -8,7 +8,7 @@ const Profile = ({ logout, src, username }) => {
       <ProfilePicAndName>
 
         <IMG src={src} alt="avatar" />
-     
+
 
         <Name>Logged in as {username}</Name>
       </ProfilePicAndName>
@@ -17,6 +17,7 @@ const Profile = ({ logout, src, username }) => {
     </ProfileMainDiv>
   )
 }
+
 
 const ProfileMainDiv = styled.div`
   display: flex;
@@ -29,12 +30,12 @@ const ProfilePicAndName = styled.div`
   gap: 8px;
   align-items: center;
   margin: 10px 0px; 
-  margin-top: 30px;
+  margin-top: 60px;
 `
 
 const IMG = styled.img`
   position: absolute;
-  top: 60px;
+  top: 82px;
   left: 203px;
   border-radius: 50%;
   width: 70px;

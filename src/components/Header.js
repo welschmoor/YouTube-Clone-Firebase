@@ -35,7 +35,7 @@ const Header = ({ hamburgerClick }) => {
 ////////////////////////////////////
 //          MAINDIV  
 const Wrapper = styled.header`
-
+    z-index: 10;
     position: fixed;
     width: 100%;
     display: flex;
@@ -85,6 +85,9 @@ export const SearchInput = styled.input`
         outline: 2px solid ${p => p.theme.textCol};
     }
 
+  @media (max-width: 800px ) {
+    display: none;
+  }
 `
 
 export const SearchButton = styled.button`
@@ -159,6 +162,10 @@ const SearchIcon = styled(IoSearch)`
 const IconMic = styled(IoMic)`
     font-size: 1.3rem;
     cursor: pointer; 
+    
+    @media (max-width: 800px ) {
+    display: none;
+  }
 `
 
 export default Header

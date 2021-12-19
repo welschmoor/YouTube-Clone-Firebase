@@ -38,12 +38,13 @@ const VideoThumbnailCard = ({ e }) => {
 
   useEffect(() => {
     if (documents) {
-      channelPic = documents.find(each => each.uid === e.id)
+      channelPic = documents.find(each => each.uid === e.createdBy.id)
       console.log("channelPic", channelPic)
-      setPicURL(channelPic.photoURL)
-      setDisplayName(channelPic.displayName)
+      if (channelPic) {
+        setPicURL(channelPic.photoURL)
+        setDisplayName(channelPic.displayName)
+      }
     }
-
   }, [documents, channelPic])
 
   return (
@@ -68,6 +69,7 @@ const VideoThumbnailCard = ({ e }) => {
   )
 }
 
+
 const VTCwrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,6 +80,7 @@ const ChannelGrid = styled.div`
   display: grid;
   grid-template-columns: 70px 1fr;
   column-gap: 4px;
+
 `
 
 const TitleAndChannelName = styled.div`
@@ -94,7 +97,8 @@ const ChannelNameAndViews = styled.div`
 `
 
 const Thumbnail = styled.div`
-  width: 360px;
+  min-width: 300px;
+  max-width: 660px;
   display: block;
   cursor: pointer;
 `
@@ -131,4 +135,5 @@ const Link = styled(LinkNeedsStyle)`
   text-decoration: none;
   color: ${p => p.theme.textCol};
 `
+
 export default VideoThumbnailCard

@@ -51,7 +51,7 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
 
 const MobileWrapper = styled.aside`
   padding-top: 17px;
-  z-index: 6;
+  z-index: 12;
   position: fixed;
   background-color: ${p => p.theme.navCol};
   width: 240px;
