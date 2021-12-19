@@ -43,7 +43,6 @@ const IMG = styled.img`
   
 `
 
-
 const Name = styled.h4`
   font-size: 1rem;
   font-weight: 400;

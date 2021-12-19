@@ -7,29 +7,76 @@
 // thumbnail,
 // comments 
 
+
+
+/// to do: add view counter
+/// add time posted, add checkmark of approved channel, 
+/// make grey text lighter 
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { Link, useParams } from "react-router-dom"
+import { useCollection } from "../hooks/useCollection"
+import { Link as LinkNeedsStyle, useParams } from "react-router-dom"
 
 
 
 const VideoThumbnailCard = ({ e }) => {
- 
-  
   const { user } = useAuthContext()
-  const { id } = useParams()
+  const { documents } = useCollection('users')
+  const [picURL, setPicURL] = useState('')
+  const [displayName, setDisplayName] = useState('')
+  const [count, setCount] = useState(0)
+
+  console.log("documents", documents)
+  let channelPic = null
+
+  useEffect(() => {
+    if (documents) {
+      channelPic = documents.find(each => each.uid === e.id)
+      console.log("channelPic", channelPic)
+      setPicURL(channelPic.photoURL)
+      setDisplayName(channelPic.displayName)
+    }
+
+  }, [documents, channelPic])
 
   return (
-    <div>
+    <VTCwrapper>
 
       <Thumbnail controls>
         <Link to={`/watch/${e.id}`} ><IMG src={e.thumbnailURL} type="video/mp4" /></Link>
-
       </Thumbnail>
-      <VideoTitle>{e.videoTitle}</VideoTitle>
-    </div>
+
+      <ChannelGrid>
+        {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
+        <TitleAndChannelName>
+          <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
+          {displayName && <ChannelName>{displayName}</ChannelName>}
+          {displayName && <ChannelName>1.450.000 Views &nbsp;::&nbsp; 2 months ago</ChannelName>}
+        </TitleAndChannelName>
+      </ChannelGrid>
+
+    </VTCwrapper>
   )
 }
+
+const VTCwrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+
+const ChannelGrid = styled.div`
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  column-gap: 4px;
+`
+
+const TitleAndChannelName = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
 
 const Thumbnail = styled.div`
   width: 360px;
@@ -46,4 +93,23 @@ const IMG = styled.img`
   width: 100%;
 `
 
+const IMGavatar = styled.img`
+  width: 100%;
+  border-radius: 50%;
+`
+
+const AvatarDiv = styled.div`
+  width: 60px;
+  height: 60px;
+
+`
+
+const ChannelName = styled.h6`
+  color: ${p => p.theme.thirdCol};
+`
+
+const Link = styled(LinkNeedsStyle)`
+  text-decoration: none;
+  color: ${p=>p.theme.textCol};
+`
 export default VideoThumbnailCard

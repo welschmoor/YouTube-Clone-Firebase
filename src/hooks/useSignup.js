@@ -35,6 +35,7 @@ export const useSignup = () => {
         online: true,
         displayName: displayName,
         photoURL: imgUrl,
+        uid: res.user.uid,
       })
 
       // dispatch login action
