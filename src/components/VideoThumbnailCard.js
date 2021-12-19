@@ -9,6 +9,12 @@
 
 
 
+
+
+
+// TODO !!!!!!!!!!!!!!
+
+/// rewrite useFirestore hook to accomodate delete, update etc
 /// to do: add view counter
 /// add time posted, add checkmark of approved channel, 
 /// make grey text lighter 
@@ -51,8 +57,10 @@ const VideoThumbnailCard = ({ e }) => {
         {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
         <TitleAndChannelName>
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
-          {displayName && <ChannelName>{displayName}</ChannelName>}
-          {displayName && <ChannelName>1.450.000 Views &nbsp;::&nbsp; 2 months ago</ChannelName>}
+          <ChannelNameAndViews>
+            {displayName && <ChannelName>{displayName}</ChannelName>}
+            {displayName && <ChannelName>1.450.000 Views &nbsp;<strong>::</strong>&nbsp; 2 months ago</ChannelName>}
+          </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>
 
@@ -75,7 +83,14 @@ const ChannelGrid = styled.div`
 const TitleAndChannelName = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+`
+
+const ChannelNameAndViews = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
 `
 
 const Thumbnail = styled.div`
@@ -105,11 +120,13 @@ const AvatarDiv = styled.div`
 `
 
 const ChannelName = styled.h6`
-  color: ${p => p.theme.thirdCol};
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: ${p => p.theme.fourthCol};
 `
 
 const Link = styled(LinkNeedsStyle)`
   text-decoration: none;
-  color: ${p=>p.theme.textCol};
+  color: ${p => p.theme.textCol};
 `
 export default VideoThumbnailCard
