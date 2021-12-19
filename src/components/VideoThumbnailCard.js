@@ -23,7 +23,7 @@ import styled from "styled-components"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useCollection } from "../hooks/useCollection"
 import { Link as LinkNeedsStyle, useParams } from "react-router-dom"
-
+import { IoCheckmarkCircleSharp } from "react-icons/io5"
 
 
 const VideoThumbnailCard = ({ e }) => {
@@ -58,7 +58,7 @@ const VideoThumbnailCard = ({ e }) => {
         <TitleAndChannelName>
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
-            {displayName && <ChannelName>{displayName}</ChannelName>}
+            {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
             {displayName && <ChannelName>1.450.000 Views &nbsp;<strong>::</strong>&nbsp; 2 months ago</ChannelName>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
@@ -123,6 +123,8 @@ const ChannelName = styled.h6`
   font-size: 0.8rem;
   font-weight: 400;
   color: ${p => p.theme.fourthCol};
+  display: flex;
+  gap: 4px;
 `
 
 const Link = styled(LinkNeedsStyle)`

@@ -8,6 +8,7 @@ import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSea
 
 const Header = ({ hamburgerClick }) => {
 
+
   return (
     <Wrapper >
       <LogoWrapper>
@@ -22,7 +23,7 @@ const Header = ({ hamburgerClick }) => {
       <IconWrapper>
         <IconNotifications></IconNotifications>
         <IconApps></IconApps>
-        <IconSettings ></IconSettings>
+        <SettingsBtn><IconSettings></IconSettings></SettingsBtn>
       </IconWrapper>
 
     </Wrapper>
@@ -137,10 +138,18 @@ const IconApps = styled(IoAppsOutline)`
     cursor: pointer;
 `
 
+const SettingsBtn = styled.button`
+  color: white;
+  font-size: 1.3rem;
+  border: none;
+  background: none;
+`
 const IconSettings = styled(IoSettingsOutline)`
     font-size: 1.3rem;
     cursor: pointer;
 `
+
+
 const SearchIcon = styled(IoSearch)`
     font-size: 1.3rem;
     cursor: pointer;
