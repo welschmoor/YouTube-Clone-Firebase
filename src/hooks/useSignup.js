@@ -23,7 +23,7 @@ export const useSignup = () => {
       }
 
       // update user Avatar. First this creates a folder with user uid as subfolder
-      const uploadPath = `thumbnails/${res.user.uid}/${avatar.name}`
+      const uploadPath = `avatars/${res.user.uid}/${avatar.name}`
       const imgRes = await storage.ref(uploadPath).put(avatar)   // we select where we want to store, and then we put it
       const imgUrl = await imgRes.ref.getDownloadURL()
 

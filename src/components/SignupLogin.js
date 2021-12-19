@@ -26,11 +26,11 @@ const LoginNavLink = styled(NavLink)`
   text-decoration: none;
   font-size: 0.8rem;
   color: ${p=>p.theme.textCol};
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 14px;
+  padding-top: 14px;
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 9px;
+  border-radius: 3px;
 
   &:hover {
     box-shadow: 0px 0px 0px 1px hsl(240, 7%, 70%);;

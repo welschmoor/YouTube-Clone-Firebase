@@ -9,6 +9,7 @@ import MainContent from "./components/MainContent"
 import MobileSidebar from "./components/MobileSidebar"
 import Footer from "./components/Footer"
 
+import Watch from "./pages/Watch"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Favorites from "./pages/Favorites"
@@ -120,6 +121,7 @@ function App() {
                 <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
                 <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
+                <Route path="/watch/:id" element={<Watch />} />
 
               </Routes>
             )}

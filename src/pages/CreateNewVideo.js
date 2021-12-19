@@ -59,6 +59,9 @@ const CreateNewVideo = () => {
       const videoResponse = await storage.ref(uploadPath).put(file)
       const videoUrl = await videoResponse.ref.getDownloadURL()
 
+      console.log("thumbnail: ",thumbnail)
+
+
       const uploadPath2 = `thumbnails/${thumbnail.name}`
       const thumbnailResponse = await storage.ref(uploadPath2).put(thumbnail)
       const thumbnailUrl = await thumbnailResponse.ref.getDownloadURL()
@@ -117,7 +120,7 @@ const CreateNewVideo = () => {
       setFileError('Please, select a thumbnail')
       return
     }
-    if (!file.type.includes("image/jpg")) {
+    if (!file.type.includes("image/jpeg")) {
       setFileError('Only .jpg allowed!')
       return
     }

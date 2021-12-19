@@ -25,7 +25,7 @@ const VideoCard = ({ e }) => {
 }
 
 const Video = styled.video`
-  width: 300px;
+  width: 800px;
   display: block;
 `
 

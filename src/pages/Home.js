@@ -3,7 +3,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useCollection } from "../hooks/useCollection"
-import VideoCard from "../components/VideoCard"
+import VideoThumbnailCard from "../components/VideoThumbnailCard"
 
 const Home = () => {
   const { documents, error } = useCollection('videos')
@@ -13,29 +13,12 @@ const Home = () => {
     <MainWrapper>
       {documents && documents.map(e => {
         return (
-          <VideoCard e={e} />
+          <VideoThumbnailCard e={e} key={e.id} />
 
         )
       })}
 
-      <h3>Home!!!</h3>
-      <h3>Video blah blah</h3>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam nulla odio, qui impedit veniam quo ipsa suscipit, aliquid obcaecati rem nostrum nam illo consequatur laboriosam distinctio quaerat, repudiandae provident?</p>
-      <h3>Video blah blah</h3>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam nulla odio, qui impedit veniam quo ipsa suscipit, aliquid obcaecati rem nostrum nam illo consequatur laboriosam distinctio quaerat, repudiandae provident?</p>
-      <h3>Video blah blah</h3>
-
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam nulla odio, qui impedit veniam quo ipsa suscipit, aliquid obcaecati rem nostrum nam illo consequatur laboriosam distinctio quaerat, repudiandae provident?</p>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
-      <h3>Video blah blah</h3>
+ 
 
     </MainWrapper>
   )
