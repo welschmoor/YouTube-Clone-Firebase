@@ -25,6 +25,7 @@ import { useCollection } from "../hooks/useCollection"
 import { Link as LinkNeedsStyle, useParams } from "react-router-dom"
 import { IoCheckmarkCircleSharp } from "react-icons/io5"
 
+import { firestore } from "../firebase"
 
 const VideoThumbnailCard = ({ e }) => {
   const { user } = useAuthContext()
@@ -39,13 +40,15 @@ const VideoThumbnailCard = ({ e }) => {
   useEffect(() => {
     if (documents) {
       channelPic = documents.find(each => each.uid === e.createdBy.id)
-      console.log("channelPic", channelPic)
+     
       if (channelPic) {
         setPicURL(channelPic.photoURL)
         setDisplayName(channelPic.displayName)
+        // number of views
       }
     }
   }, [documents, channelPic])
+
 
   return (
     <VTCwrapper>

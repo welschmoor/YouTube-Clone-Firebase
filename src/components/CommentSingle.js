@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 
 const CommentSingle = ({ e }) => {
-  console.log("e", e)
+ 
   return (
     <>
       <ProfileGroup>

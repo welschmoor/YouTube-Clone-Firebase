@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import VideoCard from "../components/VideoCard"
 import { useCollection } from "../hooks/useCollection"
 import { MainWrapper } from "./Home"
@@ -9,6 +9,7 @@ import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io"
 import { IoHeart } from "react-icons/io5"
 import Comments from "../components/Comments"
 
+import { firestore } from "../firebase"
 
 import styled from "styled-components"
 
@@ -18,21 +19,10 @@ const Watch = () => {
   const [videoInQ, setVideoInQ] = useState(null)
   const { id } = useParams()
 
-  // const [picURL, setPicURL] = useState('')
-  // const [displayName, setDisplayName] = useState('')
-  // // this is to make sure the profile pic is the same as the uploader
-  // let channelPic = null
-  // useEffect(() => {
-  //   if (documents) {
-  //     channelPic = documents.find(each => each.uid === e.createdBy.id)
-  //     console.log("channelPic", channelPic)
-  //     if (channelPic) {
-  //       setPicURL(channelPic.photoURL)
-  //       setDisplayName(channelPic.displayName)
-  //     }
-  //   }
-  // }, [documents, channelPic])
+  const videoInQRef = useRef(videoInQ).current
 
+
+  const preventDblClickRef = useRef(false)
 
   useEffect(() => {
     if (documents) {
@@ -40,19 +30,35 @@ const Watch = () => {
     }
   }, [documents])
 
+  // update num of views on play click
+  const viewsClickHandler = () => {
+    if (preventDblClickRef.current) return
+
+    firestore.collection('videos').doc(id).update({ views: Number(Number(videoInQ.views) + 1) })
+    preventDblClickRef.current = true
+  }
+
+  // update num of likes on click
+  const thumbsUpClickHandler = () => {
+    if (preventDblClickRef.current) return
+
+    firestore.collection('videos').doc(id).update({ likes: Number(Number(videoInQ.likes) + 1) })
+    preventDblClickRef.current = true
+  }
 
   return (
     <MainWrapper>
       <WatchWrapperGrid>
         <LeftCol>
-          {videoInQ && <VideoCard e={videoInQ} />}
+          {videoInQ && <VideoCard e={videoInQ} viewsClickHandler={viewsClickHandler} />}
           {videoInQ && <VideoTitle>{videoInQ.videoTitle}</VideoTitle>}
           <ViewsAndThumbs>
 
             {videoInQ && <VideoViews>{videoInQ.views} Views &nbsp;<strong>::</strong>&nbsp; 19.12.2021</VideoViews>}
             <LikesAndFavs>
               <LikesGroup>
-                <ThumbsUpIcon />
+                {!preventDblClickRef.current && <ThumbsUpIcon onClick={thumbsUpClickHandler} />}
+                {preventDblClickRef.current && <ThumbsUpIconClicked onClick={thumbsUpClickHandler} />}
                 {videoInQ && <VideoViews>{videoInQ.likes} Likes &nbsp;</VideoViews>}
               </LikesGroup>
               <FavoritesGroup>
@@ -119,7 +125,6 @@ const VideoViews = styled.h6`
   display: flex;
   gap: 4px;
 `
-
 
 
 
@@ -198,4 +203,39 @@ const ThumbsUpIcon = styled(IoMdThumbsUp)`
   cursor: pointer;
 `
 
+const ThumbsUpIconClicked = styled(IoMdThumbsUp)`
+  transform: translateY(-4px);
+  
+  color: ${p => p.theme.textCol};
+  cursor: pointer;
+`
+
 export default Watch
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////
+// Old Code
+
+
+// const [picURL, setPicURL] = useState('')
+// const [displayName, setDisplayName] = useState('')
+// // this is to make sure the profile pic is the same as the uploader
+// let channelPic = null
+// useEffect(() => {
+//   if (documents) {
+//     channelPic = documents.find(each => each.uid === e.createdBy.id)
+//     console.log("channelPic", channelPic)
+//     if (channelPic) {
+//       setPicURL(channelPic.photoURL)
+//       setDisplayName(channelPic.displayName)
+//     }
+//   }
+// }, [documents, channelPic])

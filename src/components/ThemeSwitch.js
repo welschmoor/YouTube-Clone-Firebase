@@ -3,7 +3,7 @@ import styled from "styled-components"
 const ThemeSwitch = ({ darkModeHandler, darkMode }) => {
   return (
     <SwitchLabel>
-      <CheckBoxInput type="checkbox" onClick={() => darkModeHandler()} checked={darkMode} />
+      <CheckBoxInput type="checkbox" onClick={() => darkModeHandler()} checked={darkMode} readOnly />
       <SliderSpan></SliderSpan>
     </SwitchLabel>
   )

@@ -39,7 +39,7 @@ const Comments = ({ videoID, videoInQ }) => {
       comments: [newComment, ...videoInQ.comments],
     })
     setComment('')
-    console.log(newComment)
+    
   }
 
 
@@ -75,7 +75,7 @@ const CommentsTitle = styled.h6`
   font-weight: 400;
 
 `
-const GreyMessage = styled.h6`
+const GreyMessage = styled.span`
   display: inline;
   font-size: 1rem;
   font-weight: 400;

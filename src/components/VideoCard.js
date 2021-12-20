@@ -7,21 +7,24 @@
 // thumbnail,
 // comments 
 
+import { useRef } from "react"
 import styled from "styled-components"
 
 
-const VideoCard = ({ e }) => {
+const VideoCard = ({ e, viewsClickHandler }) => {
+
+  const preventDblClickRef = useRef(false)
 
   /// to Video add preload="none" attribute so no data is wasted on preload
   return (
     <div>
 
-      <Video controls >
-        <source src={e.videoURL} type="video/mp4" />
+      <Video controls onClick={viewsClickHandler} >
+        <source src={e.videoURL} type="video/mp4" onClick={viewsClickHandler} />
         {/* <source src="mov_bbb.ogg" type="video/ogg" /> */}
         Your browser does not support HTML video.
       </Video>
- 
+
     </div>
   )
 }
