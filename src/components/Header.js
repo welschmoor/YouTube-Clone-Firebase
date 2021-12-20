@@ -9,6 +9,7 @@ import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSea
 const Header = ({ hamburgerClick, settingsHandler }) => {
   const [searchTerm, setSearchTerm] = useState()
 
+
   const submitHandler = (e) => {
     e.preventDefault()
     console.log("klacked")
@@ -93,6 +94,7 @@ export const SearchInput = styled.input`
 
     ::placeholder {
       color: ${p => p.theme.fourthCol};
+      text-shadow: none;
     }
 
     @media (max-width: 800px ) {

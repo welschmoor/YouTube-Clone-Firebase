@@ -5,7 +5,7 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
 
-  *  {
+  * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -89,7 +89,7 @@ export const lightTheme = {
   secondCol: "hsl(35, 18%, 87%)",
   thirdCol: "hsl(35, 18%, 77%)",
   fourthCol: "hsl(35, 08%, 31%)",
-  fifthCol: "hsl(35, 18%, 87%)",
+  fifthCol: "hsl(35, 18%, 65%)",
 
   iconCol: "#524949",
   homeBg: "hsl(35, 18%, 84%)",

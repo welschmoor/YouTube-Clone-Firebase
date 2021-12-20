@@ -11,7 +11,7 @@ const CommentSingle = ({ e }) => {
       <ProfileGroup>
         <AvatarIMG src={e.photoURL} />
         <ProfileName>{e.displayName}</ProfileName>
-        <Description>{e.comment}</Description>
+        <Description style={{ fontSize: "0.9rem" }}>{e.comment}</Description>
       </ProfileGroup>
     </>
   )

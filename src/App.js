@@ -32,11 +32,17 @@ function App() {
 
 
 
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("YTCloneDarkMode") === "false")
+  const [darkMode, setDarkMode] = useState(() => {
+    if (localStorage.getItem("YouTubeCloneDarkMode")) {
+      return localStorage.getItem("YouTubeCloneDarkMode") === "false"
+    }
+    return true
+  })
+  // const [darkMode, setDarkMode] = useState(true)
 
   const darkModeHandler = () => {
     setDarkMode(p => !p)
-    localStorage.setItem("YTCloneDarkMode", JSON.stringify(darkMode))
+    localStorage.setItem("YouTubeCloneDarkMode", JSON.stringify(darkMode))
   }
 
   const hamburgerClick = () => {
@@ -67,10 +73,8 @@ function App() {
                 <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
                 <Route path="/watch/:id" element={<Watch />} />
                 <Route path="*" element={<Page404 />} />
-
               </Routes>
             )}
-
           </Main>
           <Footer />
         </Wrapper >
@@ -80,6 +84,7 @@ function App() {
     </BrowserRouter>
   )
 }
+
 
 const Wrapper = styled.div`
  
