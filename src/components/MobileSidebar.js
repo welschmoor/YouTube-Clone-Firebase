@@ -61,7 +61,6 @@ const MobileWrapper = styled.aside`
   min-height: 1440px;
   height: 100vh;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
-  
 `
 
 const NAV = styled.nav`

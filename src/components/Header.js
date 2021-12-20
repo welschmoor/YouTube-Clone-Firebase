@@ -1,13 +1,18 @@
 
 
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Link as NeedStylingNavLink } from "react-router-dom"
 import { IoMenu, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, IoSearch, IoMic } from "react-icons/io5"
 
 
-const Header = ({ hamburgerClick }) => {
+const Header = ({ hamburgerClick, settingsHandler }) => {
+  const [searchTerm, setSearchTerm] = useState()
 
+  const submitHandler = (e) => {
+    e.preventDefault()
+    console.log("klacked")
+  }
 
   return (
     <Wrapper >
@@ -15,15 +20,15 @@ const Header = ({ hamburgerClick }) => {
         <Hamburger onClick={hamburgerClick} />
         <Logo><Link to="/" >YouTube</Link></Logo>
       </LogoWrapper>
-      <SearchForm action="" >
+      <SearchForm onSubmit={submitHandler} name="searchform">
         <SearchButton name="search_button" aria-label="search_button" > <SearchIcon /> </SearchButton>
-        <SearchInput type="text" name="" id="" placeholder="Search" />
+        <SearchInput type="text" name="searchinput" id="" placeholder="Search" required onChange={e => setSearchTerm(e.target.value)} />
         <IconMic />
       </SearchForm>
       <IconWrapper>
         <IconNotifications></IconNotifications>
         <IconApps></IconApps>
-        <SettingsBtn><IconSettings></IconSettings></SettingsBtn>
+        <SettingsBtn onClick={settingsHandler}><IconSettings></IconSettings></SettingsBtn>
       </IconWrapper>
 
     </Wrapper>
@@ -85,9 +90,13 @@ export const SearchInput = styled.input`
         outline: 2px solid ${p => p.theme.textCol};
     }
 
-  @media (max-width: 800px ) {
-    display: none;
-  }
+    ::placeholder {
+      color: ${p => p.theme.fourthCol};
+    }
+
+    @media (max-width: 800px ) {
+      display: none;
+    }
 `
 
 export const SearchButton = styled.button`

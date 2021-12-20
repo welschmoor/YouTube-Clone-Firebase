@@ -1,3 +1,7 @@
+todo:
+like button implement (update like count on button click)
+implement favorites list (probably by adding favorites to users collection? or creating a new collection "favorites" altogether?)
+
 # YouTube Clone
 
 This is my attempt to make a YouTube clone using Firebase for backend.

@@ -11,6 +11,7 @@ import Sidebar from "./components/Sidebar"
 import MainContent from "./components/MainContent"
 import MobileSidebar from "./components/MobileSidebar"
 import Footer from "./components/Footer"
+import SettingsModal from "./components/SettingsModal"
 
 import Watch from "./pages/Watch"
 import Home from "./pages/Home"
@@ -19,16 +20,22 @@ import Favorites from "./pages/Favorites"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CreateNewVideo from "./pages/CreateNewVideo"
+import Page404 from "./pages/Page404"
 
 
 
 function App() {
   const [sideBarOpen, SetSideBarOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   const { user, authIsReady } = useAuthContext()
 
   const hamburgerClick = () => {
-    console.log("clicked")
     SetSideBarOpen(p => !p)
+  }
+
+  const settingsHandler = () => {
+    console.log('settings klacked')
+    setSettingsOpen(p => !p)
   }
 
   return (
@@ -37,7 +44,7 @@ function App() {
 
         <GlobalStyle />
         <Wrapper >
-          <Header hamburgerClick={hamburgerClick} />
+          <Header hamburgerClick={hamburgerClick} settingsHandler={settingsHandler} />
           <Main >
             <Sidebar />
             {authIsReady && (
@@ -49,6 +56,7 @@ function App() {
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
                 <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
                 <Route path="/watch/:id" element={<Watch />} />
+                <Route path="*" element={<Page404 />} />
 
               </Routes>
             )}
@@ -57,6 +65,7 @@ function App() {
           <Footer />
         </Wrapper >
         <MobileSidebar sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick} />
+        <SettingsModal settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} settingsHandler={settingsHandler} />
       </ThemeProvider>
     </BrowserRouter>
   )
