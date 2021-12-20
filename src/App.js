@@ -21,6 +21,7 @@ import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CreateNewVideo from "./pages/CreateNewVideo"
 import Page404 from "./pages/Page404"
+import { useEffect } from "react/cjs/react.development"
 
 
 
@@ -29,7 +30,12 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { user, authIsReady } = useAuthContext()
 
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("YTCloneDarkMode") === "true" ? true : false )
+
+
+  useEffect(()=>{
+    localStorage.setItem("YTCloneDarkMode", darkMode)
+  },[darkMode])
 
   const hamburgerClick = () => {
     SetSideBarOpen(p => !p)

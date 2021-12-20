@@ -9,6 +9,7 @@ const SettingsModal = ({ settingsOpen, setSettingsOpen, settingsHandler, setDark
   const { logout, isPending, error } = useLogout()
   const { user, authIsReady } = useAuthContext()
 
+  
 
   // <SettingsWrapper style={{ "right": settingsOpen ? "20px" : "-100%" }}>
   return (
@@ -27,11 +28,15 @@ const SettingsModal = ({ settingsOpen, setSettingsOpen, settingsHandler, setDark
 
 const SettingsText = styled.h6`
   font-size: 1rem;
+
 `
 
 
 const SettingsContent = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `
 
 

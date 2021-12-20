@@ -54,8 +54,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-
-
+////////////////////////
+//    DARK
 export const darkTheme = {
   navCol: "rgb(40, 40, 46);",
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
@@ -81,11 +81,13 @@ export const darkTheme = {
 
 }
 
+////////////////////////
+//    LIGHT
 export const lightTheme = {
   navCol: "hsl(35, 18%, 87%)",
   secondCol: "hsl(35, 18%, 87%)",
   thirdCol: "hsl(35, 18%, 77%)",
-  fourthCol: "hsl(35, 18%, 87%)",
+  fourthCol: "hsl(35, 08%, 31%)",
   fifthCol: "hsl(35, 18%, 87%)",
 
   iconCol: "#524949",
@@ -96,7 +98,7 @@ export const lightTheme = {
   bgCol: "#828286;",
 
   cardCol: "hsl(0, 15.183246073298434%, 37.450980392156865%)",
-  textCol: "rgb(48, 48, 48)",
+  textCol: "#524949",
   textShadow: "none",
   boxShadowLight: "0px 0px 0px 1px hsl(240, 7%, 30%)",
   buttonBg: "linear-gradient(180deg, #bbdfbb 0%, #8eb68e 100%)",
