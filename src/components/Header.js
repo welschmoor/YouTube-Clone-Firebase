@@ -18,7 +18,7 @@ const Header = ({ hamburgerClick, settingsHandler }) => {
     <Wrapper >
       <LogoWrapper>
         <Hamburger onClick={hamburgerClick} />
-        <Logo><Link to="/" >YouTube</Link></Logo>
+        <Link to="/" ><Logo>YouTube</Logo></Link>
       </LogoWrapper>
       <SearchForm onSubmit={submitHandler} name="searchform">
         <SearchButton name="search_button" aria-label="search_button" > <SearchIcon /> </SearchButton>
@@ -48,7 +48,7 @@ const Wrapper = styled.header`
     display: flex;
     gap: 20px;
     align-items: center;
-    color: rgb(238, 238, 238);
+    color: ${p => p.theme.iconCol};
     height: 60px;
     display: flex;
     justify-content: space-between;
@@ -57,7 +57,8 @@ const Wrapper = styled.header`
 export const Logo = styled.h2`
     font-size: 1.2rem;
     font-weight: 400;
-    color: white;
+
+    color: ${p => p.theme.iconCol};
 `
 export const LogoWrapper = styled.div`
     display: flex;
@@ -159,6 +160,7 @@ const SettingsBtn = styled.button`
 const IconSettings = styled(IoSettingsOutline)`
     font-size: 1.3rem;
     cursor: pointer;
+    color: ${p => p.theme.iconCol};
 `
 
 

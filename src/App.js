@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import { GlobalStyle, darkTheme } from "./STYLES/style"
+import { GlobalStyle, darkTheme, lightTheme } from "./STYLES/style"
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { useAuthContext } from "./hooks/useAuthContext"
@@ -29,6 +29,8 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { user, authIsReady } = useAuthContext()
 
+  const [darkMode, setDarkMode] = useState(true)
+
   const hamburgerClick = () => {
     SetSideBarOpen(p => !p)
   }
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter >
-      <ThemeProvider theme={darkTheme} >
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme} >
 
         <GlobalStyle />
         <Wrapper >
@@ -65,7 +67,7 @@ function App() {
           <Footer />
         </Wrapper >
         <MobileSidebar sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick} />
-        <SettingsModal settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} settingsHandler={settingsHandler} />
+        <SettingsModal settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} settingsHandler={settingsHandler} darkMode={darkMode} setDarkMode={setDarkMode}   />
       </ThemeProvider>
     </BrowserRouter>
   )

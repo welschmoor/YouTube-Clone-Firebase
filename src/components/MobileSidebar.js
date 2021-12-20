@@ -94,11 +94,13 @@ const NavLink = styled(NavLinkToStyle)`
   align-items: center;
   gap: 20px;
   text-decoration: none;
-  color: white;
+  color: ${p => p.theme.iconCol};
   padding: 10px 0px;
   width: 100%;
   padding-left: ${p => p.theme.leftSideMargin};
-
+  .active & {
+    color: ${p => p.theme.activeCol};
+  }
 `
 
 const IconTitle = styled.h3`
@@ -113,7 +115,7 @@ const SidebarPlane = styled.div`
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 10;
 `
 
 export default MobileSidebar

@@ -41,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .active {
-    color: #baa6f1 !important;
+    color: ${p => p.theme.activeCol};
   }
 
   ::-webkit-scrollbar {
@@ -63,6 +63,10 @@ export const darkTheme = {
   fourthCol: "rgb(158, 158, 168)",
   fifthCol: "hsl(240, 6.976744186046512%, 39.862745098039216%);",
 
+  homeBg: "rgb(30, 30, 36)",
+  iconCol: "rgb(238, 238, 238)",
+  activeCol: "hsl(256, 73%, 80%) !important",
+
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",
 
@@ -74,5 +78,30 @@ export const darkTheme = {
   hideSidebar: "none",
   leftSideMargin: "27px",
 
-  activeCol: "#baa6f1",
+
+}
+
+export const lightTheme = {
+  navCol: "hsl(35, 18%, 87%)",
+  secondCol: "hsl(35, 18%, 87%)",
+  thirdCol: "hsl(35, 18%, 77%)",
+  fourthCol: "hsl(35, 18%, 87%)",
+  fifthCol: "hsl(35, 18%, 87%)",
+
+  iconCol: "#524949",
+  homeBg: "hsl(35, 18%, 84%)",
+  activeCol: "hsl(256, 43%, 60%) !important",
+
+  light2: "hsl(35, 23%, 76%)",
+  bgCol: "#828286;",
+
+  cardCol: "hsl(0, 15.183246073298434%, 37.450980392156865%)",
+  textCol: "rgb(48, 48, 48)",
+  textShadow: "none",
+  boxShadowLight: "0px 0px 0px 1px hsl(240, 7%, 30%)",
+  buttonBg: "linear-gradient(180deg, #bbdfbb 0%, #8eb68e 100%)",
+  hideSidebar: "none",
+  leftSideMargin: "27px",
+
+
 }

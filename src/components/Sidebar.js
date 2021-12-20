@@ -55,6 +55,7 @@ const Wrapper = styled.aside`
   width: 80px;
   position: fixed;
 
+
   @media (max-width: 700px ) {
     display: none;
   }
@@ -85,18 +86,23 @@ const NavLI = styled.li`
     color: white;
     text-decoration: none;
 
-
+    .active & {
+    color: ${p => p.theme.activeCol};
+  }
 `
 
 const NavLink = styled(NavLinkNeedsStyling)`
   text-decoration: none;
-  color: white;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  
+  color: ${p => p.theme.iconCol};
+  .active & {
+    color: ${p => p.theme.activeCol};
+  }
 `
 
 /////////////////////////////////////////
@@ -104,15 +110,24 @@ const NavLink = styled(NavLinkNeedsStyling)`
 
 export const IconHome = styled(IoHome)`
   font-size: 1.25rem;
+  color: inherit;
+
+
 `
 export const CreateNewIcon = styled(IoAddCircle)`
   font-size: 1.25rem;
+  color: ${p => p.theme.iconCol};
+  color: inherit;
 `
 export const IconFavorites = styled(IoBookmarks)`
   font-size: 1.25rem;
+  color: ${p => p.theme.iconCol};
+  color: inherit;
 `
 export const IconInfo = styled(IoInformationCircle)`
   font-size: 1.6rem;
+  color: ${p => p.theme.iconCol};
+  color: inherit;
 `
 
 
