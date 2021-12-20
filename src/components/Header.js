@@ -77,7 +77,7 @@ const SearchForm = styled.form`
 
 export const SearchInput = styled.input`
     flex-shrink: 1;
-    background-color: hsl(240, 7%, 10%);
+    background-color: ${p => p.theme.searchInputBG};
     border: none;
     height: 46px;
     border-radius: 3px;

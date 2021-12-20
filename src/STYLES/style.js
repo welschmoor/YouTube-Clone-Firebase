@@ -66,6 +66,7 @@ export const darkTheme = {
   homeBg: "rgb(30, 30, 36)",
   iconCol: "rgb(238, 238, 238)",
   activeCol: "hsl(256, 73%, 80%) !important",
+  searchInputBG: "hsl(240, 7%, 10%)",
 
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",
@@ -93,6 +94,7 @@ export const lightTheme = {
   iconCol: "#524949",
   homeBg: "hsl(35, 18%, 84%)",
   activeCol: "hsl(256, 43%, 60%) !important",
+  searchInputBG: "hsl(35, 18%, 97%)",
 
   light2: "hsl(35, 23%, 76%)",
   bgCol: "#828286;",

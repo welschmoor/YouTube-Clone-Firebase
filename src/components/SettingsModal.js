@@ -1,15 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { useLogout } from "../hooks/useLogout"
-import { useAuthContext } from "../hooks/useAuthContext"
+// import { useLogout } from "../hooks/useLogout"
+// import { useAuthContext } from "../hooks/useAuthContext"
 import ThemeSwitch from "../components/ThemeSwitch"
 
 
-const SettingsModal = ({ settingsOpen, setSettingsOpen, settingsHandler, setDarkMode, darkMode }) => {
-  const { logout, isPending, error } = useLogout()
-  const { user, authIsReady } = useAuthContext()
+const SettingsModal = ({ settingsOpen, settingsHandler, darkModeHandler, darkMode }) => {
 
-  
 
   // <SettingsWrapper style={{ "right": settingsOpen ? "20px" : "-100%" }}>
   return (
@@ -18,7 +15,7 @@ const SettingsModal = ({ settingsOpen, setSettingsOpen, settingsHandler, setDark
       <SettingsWrapper style={{ "right": settingsOpen ? "20px" : "-100%" }}>
         <SettingsContent>
           <SettingsText>Change Theme</SettingsText>
-          <ThemeSwitch setDarkMode={setDarkMode} />
+          <ThemeSwitch darkModeHandler={darkModeHandler} darkMode={darkMode} />
         </SettingsContent>
       </SettingsWrapper>
     </>
@@ -39,13 +36,6 @@ const SettingsContent = styled.div`
   gap: 20px;
 `
 
-
-
-
-
-
-
-
 const SettingsWrapper = styled.aside`
   padding-top: 17px;
   z-index: 11;
@@ -60,7 +50,6 @@ const SettingsWrapper = styled.aside`
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
 `
 
-
 const SidebarPlane = styled.div`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
@@ -71,6 +60,5 @@ const SidebarPlane = styled.div`
   transform: translate(-50%, -50%);
   z-index: 1;
 `
-
 
 export default SettingsModal

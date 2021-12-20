@@ -30,12 +30,14 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { user, authIsReady } = useAuthContext()
 
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("YTCloneDarkMode") === "true" ? true : false )
 
 
-  useEffect(()=>{
-    localStorage.setItem("YTCloneDarkMode", darkMode)
-  },[darkMode])
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("YTCloneDarkMode") === "false")
+
+  const darkModeHandler = () => {
+    setDarkMode(p => !p)
+    localStorage.setItem("YTCloneDarkMode", JSON.stringify(darkMode))
+  }
 
   const hamburgerClick = () => {
     SetSideBarOpen(p => !p)
@@ -73,7 +75,7 @@ function App() {
           <Footer />
         </Wrapper >
         <MobileSidebar sideBarOpen={sideBarOpen} hamburgerClick={hamburgerClick} />
-        <SettingsModal settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} settingsHandler={settingsHandler} darkMode={darkMode} setDarkMode={setDarkMode}   />
+        <SettingsModal settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} settingsHandler={settingsHandler} darkModeHandler={darkModeHandler} darkMode={darkMode} />
       </ThemeProvider>
     </BrowserRouter>
   )
