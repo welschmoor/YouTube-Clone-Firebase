@@ -1,4 +1,9 @@
 
+/// !!! this is an example of how to make a counter update on mount
+/// it's very hard to do, you need both a ref and an extra useState
+
+
+
 import { useState, useEffect, useRef } from "react"
 import VideoCard from "../components/VideoCard"
 import { useCollection } from "../hooks/useCollection"
@@ -17,26 +22,30 @@ const Watch = () => {
   const { documents, error } = useCollection('videos')
   // const { documents: usersCollection } = useCollection('users')
   const [videoInQ, setVideoInQ] = useState(null)
+  const [views, setViews] = useState(videoInQ?.views)
   const { id } = useParams()
 
-  const videoInQRef = useRef(videoInQ).current
-
-
   const preventDblClickRef = useRef(false)
+  const preventDblClickRef2 = useRef(false)
 
+  /// relevant code for updating views?
   useEffect(() => {
+    const updateViewsFirestore = async () => {
+      await firestore.collection('videos').doc(id).update({ views: Number(Number(videoInQ.views) + 1) })
+    }
+
     if (documents) {
       setVideoInQ(documents.find(e => id === e.id))
+
     }
-  }, [documents])
+    if (videoInQ) {
+      if (preventDblClickRef2.current) return
+      updateViewsFirestore()
+      setViews(videoInQ.views + 1)
+      preventDblClickRef2.current = true
+    }
+  }, [documents, views, videoInQ?.views])
 
-  // update num of views on play click
-  const viewsClickHandler = () => {
-    if (preventDblClickRef.current) return
-
-    firestore.collection('videos').doc(id).update({ views: Number(Number(videoInQ.views) + 1) })
-    preventDblClickRef.current = true
-  }
 
   // update num of likes on click
   const thumbsUpClickHandler = () => {
@@ -50,7 +59,7 @@ const Watch = () => {
     <MainWrapper>
       <WatchWrapperGrid>
         <LeftCol>
-          {videoInQ && <VideoCard e={videoInQ} viewsClickHandler={viewsClickHandler} />}
+          {videoInQ && <VideoCard e={videoInQ} />}
           {videoInQ && <VideoTitle>{videoInQ.videoTitle}</VideoTitle>}
           <ViewsAndThumbs>
 

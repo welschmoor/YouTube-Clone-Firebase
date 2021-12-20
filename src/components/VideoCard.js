@@ -29,6 +29,7 @@ const VideoCard = ({ e, viewsClickHandler }) => {
   )
 }
 
+
 const Video = styled.video`
   z-index: -1;
   min-width: 400px;

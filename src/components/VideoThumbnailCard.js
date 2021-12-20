@@ -63,7 +63,7 @@ const VideoThumbnailCard = ({ e }) => {
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
             {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
-            {displayName && <ChannelName>1.450.000 Views &nbsp;<strong>::</strong>&nbsp; 2 months ago</ChannelName>}
+            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; 2 months ago</ChannelName>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>
