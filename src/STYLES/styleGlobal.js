@@ -1,6 +1,6 @@
+// Global Styles AND Themes
 
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -54,10 +54,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
+
 ////////////////////////
 //    DARK
 export const darkTheme = {
-  navCol: "rgb(40, 40, 46);",
+  navCol: "rgb(40, 40, 46)",
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
   thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%);",
   fourthCol: "rgb(158, 158, 168)",
@@ -79,7 +80,7 @@ export const darkTheme = {
   hideSidebar: "none",
   leftSideMargin: "27px",
 
-
+  errorCol: "hsl(29, 100%, 50%)",
 }
 
 ////////////////////////
@@ -107,5 +108,5 @@ export const lightTheme = {
   hideSidebar: "none",
   leftSideMargin: "27px",
 
-
+  errorCol: "hsl(0, 80%, 50%)",
 }

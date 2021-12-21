@@ -1,10 +1,15 @@
 
 import React, { useState } from "react"
-import styled from "styled-components"
-import { MainWrapper } from "./Home"
-import { SearchButton, SearchInput } from "../components/Header"
 import { useLogin } from "../hooks/useLogin"
-import { Grid, Title, Form, LabelInputGroup, Input, SignUpBtn, Label } from "./Signup"
+
+// styles
+import styled from "styled-components"
+import { Grid, Form, LabelInputGroup, Input, SignUpBtn, Label } from "./Signup"
+import { SearchButton, SearchInput } from "../components/Header"
+import { MainWrapper } from "./Home"
+import { ParagraphDefault as P, Title, LinkStyled } from "../STYLES/styleText.js"
+import ErrorMessage from "../components/ErrorMessage"
+import ErrorMessageDummy from "../components/ErrorMessageDummy"
 
 
 const Signup = () => {
@@ -17,20 +22,23 @@ const Signup = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-   
+
     console.log("login submitted")
 
     login(email, password)
-    
+
   }
 
 
   return (
     <MainWrapper>
-    
-      {error && <div>{error}</div>}
+
+      {error ? <ErrorMessage errorMessage={error}/> : <ErrorMessageDummy /> }
       <Grid >
-        <Title>Log In Page</Title>
+        <div>
+          <Title>Log In Page</Title>
+          <LinkStyled to="/signup"><P>Don't have an account yet? Click here to create one!</P></LinkStyled>
+        </div>
         <Form name="loginform" onSubmit={submitHandler} >
           <LabelInputGroup>
             <Label htmlFor="email">Email</Label>

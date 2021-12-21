@@ -100,6 +100,17 @@ export const SearchInput = styled.input`
     @media (max-width: 800px ) {
       display: none;
     }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover, 
+  :-webkit-autofill:focus, 
+  :-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 10px 100px ${p => p.theme.navCol} inset, 0 1px 1px 0px hsla(0, 0%, 100%, .15), inset 0 2px 2px hsla(0, 0%, 0%, 0.1) !important;
+    -webkit-text-fill-color: hsl(240, 17%, 80%) !important;
+    border-radius: 3px;
+    font-size: 1rem;
+    box-shadow: ${p => p.theme.boxShadowLight};
+  }  
 `
 
 export const SearchButton = styled.button`

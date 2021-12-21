@@ -1,10 +1,19 @@
 
 import React, { useState } from "react"
-import styled from "styled-components"
-import { MainWrapper } from "./Home"
-import { SearchButton, SearchInput } from "../components/Header"
 import { useSignup } from "../hooks/useSignup"
+
+
+// styles
+import styled from "styled-components"
+import { SearchButton, SearchInput } from "../components/Header"
+import { MainWrapper } from "./Home"
+import { SignUpInWrapper } from "../STYLES/styleWrappers.js"
 import avatarDefault from "../static/avatarDefault.jpg"
+import { ParagraphDefault as P, Title, LinkStyled } from "../STYLES/styleText.js"
+
+import ErrorMessage from "../components/ErrorMessage"
+import ErrorMessageDummy from "../components/ErrorMessageDummy"
+
 
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -15,6 +24,15 @@ const Signup = () => {
   const { signup, isPending, error } = useSignup()
 
 
+  const displayNameHandler = (e) => {
+    setDisplayName(p => {
+      if (p.length > 10) {
+        return p.slice(0, 10)
+      }
+      return e.target.value
+    })
+  }
+
   // AVATAR Picture handler. If too big, error.
   const fileInputHandler = (e) => {
     setAvatar(null)
@@ -22,7 +40,7 @@ const Signup = () => {
     let file = e.target.files[0]
 
     if (!file) {
-      setAvatar(URL.createObjectURL(avatarDefault))
+
       // setAvatarError('Please, select a file')
       return
     }
@@ -40,38 +58,43 @@ const Signup = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-    signup(email, password, displayName, avatar)
+    signup(email.trim(), password.trim(), displayName.trim(), avatar)
     console.log("submitted")
   }
 
 
   return (
-    <MainWrapper>
-      {avatarError && <div>{avatarError}</div>}
-      {error && <div>{error}</div>}
+    <SignUpInWrapper>
+      {avatarError && <ErrorMessage errorMessage={avatarError} />}
+      {error ? <ErrorMessage errorMessage={error} /> : <ErrorMessageDummy />}
       <Grid >
-        <Title>Sign Up!</Title>
+        <div>
+          <Title>Sign Up!</Title>
+          <LinkStyled to="/login"><P>Already have an account? Click here to sign in</P></LinkStyled>
+        </div>
         <Form name="signupform" onSubmit={submitHandler} >
           <LabelInputGroup>
             <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email" id="email" required onChange={(e) => setEmail(e.target.value)} value={email} />
+            <Input type="email" name="email" id="email" required onChange={(e) => setEmail(e.target.value)} value={email} placeholder="can be fake, no confirmation" />
           </LabelInputGroup>
           <LabelInputGroup>
             <Label htmlFor="password">Password</Label>
-            <Input type="password" name="password" id="password" required onChange={(e) => setPassword(e.target.value)} value={password} />
+            <Input type="password" name="password" id="password" required onChange={(e) => setPassword(e.target.value)} value={password} placeholder="at least 6 characters long" />
           </LabelInputGroup>
           <LabelInputGroup>
             <Label htmlFor="displayname">Display Name</Label>
-            <Input type="text" name="displayname" id="displayname" required onChange={(e) => setDisplayName(e.target.value)} value={displayName} />
+            <Input type="text" name="displayname" id="displayname" required onChange={e => setDisplayName(e.target.value.slice(0, 10))} value={displayName} placeholder="maximum 10 characters long" />
           </LabelInputGroup>
           <LabelInputGroup>
-            <Label htmlFor="avatar">Upload Avatar Picture</Label>
-            <Input type="file" name="avatar" id="file" avatar onChange={fileInputHandler} />
+            <Label htmlFor="file">Upload Avatar Picture (not required)</Label>
+            <FileLabel htmlFor="file">Click here to choose .jpg
+              <Input type="file" name="avatar" id="file" avatar onChange={fileInputHandler} style={{ display: "none" }} />
+            </FileLabel>
           </LabelInputGroup>
           <SignUpBtn>Sign Up!</SignUpBtn>
         </Form>
       </Grid>
-    </MainWrapper>
+    </SignUpInWrapper>
   )
 }
 
@@ -79,10 +102,7 @@ const Signup = () => {
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-`
-
-export const Title = styled.h3`
-
+  gap: 20px;
 `
 
 export const Form = styled.form`
@@ -107,6 +127,57 @@ export const Input = styled(SearchInput)`
   font-size: 1rem;
   padding: 10px 20px;
   background-color: ${p => p.theme.navCol};
+  
+  @media (max-width: 800px ) {
+      display: block;
+  }
+
+`
+
+const FileLabel = styled.label`
+
+  cursor: pointer;
+  display: flex;
+  align-items: center
+  flex-shrink: 1;
+  background-color: ${p => p.theme.searchInputBG};
+  border: none;
+  height: 46px;
+  border-radius: 3px;
+  padding-left: 24px;
+  padding-right: 48px;
+  box-shadow: ${p => p.theme.boxShadowLight};
+  color: ${p => p.theme.textCol};
+  font-size: 20px;
+
+  :focus {
+      outline: 2px solid ${p => p.theme.textCol};
+  }
+
+  ::placeholder {
+    color: ${p => p.theme.fourthCol};
+    text-shadow: none;
+  }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover, 
+  :-webkit-autofill:focus, 
+  :-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 10px 100px ${p => p.theme.navCol} inset, 0 1px 1px 0px hsla(0, 0%, 100%, .15), inset 0 2px 2px hsla(0, 0%, 0%, 0.1) !important;
+    -webkit-text-fill-color: hsl(240, 17%, 80%) !important;
+    border-radius: 3px;
+    font-size: 1rem;
+    box-shadow: ${p => p.theme.boxShadowLight};
+  }  
+
+
+
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: ${p => p.theme.navCol};
+  
 `
 
 export const SignUpBtn = styled(SearchButton)`
@@ -114,6 +185,7 @@ export const SignUpBtn = styled(SearchButton)`
   max-width: 400px;
   color: ${p => p.theme.textCol};
   font-size: 1rem;
+  margin-top: 20px;
 `
 
 export default Signup

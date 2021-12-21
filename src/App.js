@@ -1,9 +1,10 @@
 import React, { useState } from "react"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import { GlobalStyle, darkTheme, lightTheme } from "./STYLES/style"
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { useAuthContext } from "./hooks/useAuthContext"
+
+// styles
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+import { GlobalStyle, darkTheme, lightTheme } from "./STYLES/styleGlobal"
 
 
 import Header from "./components/Header"
@@ -21,8 +22,6 @@ import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CreateNewVideo from "./pages/CreateNewVideo"
 import Page404 from "./pages/Page404"
-import { useEffect } from "react/cjs/react.development"
-
 
 
 function App() {
@@ -31,14 +30,12 @@ function App() {
   const { user, authIsReady } = useAuthContext()
 
 
-
   const [darkMode, setDarkMode] = useState(() => {
     if (localStorage.getItem("YouTubeCloneDarkMode")) {
       return localStorage.getItem("YouTubeCloneDarkMode") === "false"
     }
     return true
   })
-  // const [darkMode, setDarkMode] = useState(true)
 
   const darkModeHandler = () => {
     setDarkMode(p => !p)
@@ -50,7 +47,7 @@ function App() {
   }
 
   const settingsHandler = () => {
-    console.log('settings klacked')
+    console.log('settings clicked')
     setSettingsOpen(p => !p)
   }
 
