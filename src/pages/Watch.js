@@ -1,22 +1,22 @@
 
 /// !!! this is an example of how to make a counter update on mount
-/// it's very hard to do, you need both a ref and an extra useState
+/// took me a lot of time to figure it out, you need both a ref and an extra useState
 
-
-
-import { useState, useEffect, useRef } from "react"
-import VideoCard from "../components/VideoCard"
-import { useCollection } from "../hooks/useCollection"
-import { MainWrapper } from "./Home"
-import { useParams } from "react-router-dom"
-
-import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io"
-import { IoHeart } from "react-icons/io5"
-import Comments from "../components/Comments"
 
 import { firestore } from "../firebase"
+import { useState, useEffect, useRef } from "react"
+import { useCollection } from "../hooks/useCollection"
 
+// styles
 import styled from "styled-components"
+import { MainWrapper } from "./Home"
+import { useParams } from "react-router-dom"
+import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io"
+import { IoHeart } from "react-icons/io5"
+
+import Comments from "../components/Comments"
+import VideoCard from "../components/VideoCard"
+
 
 const Watch = () => {
   const { documents, error } = useCollection('videos')
@@ -63,7 +63,7 @@ const Watch = () => {
           {videoInQ && <VideoTitle>{videoInQ.videoTitle}</VideoTitle>}
           <ViewsAndThumbs>
 
-            {videoInQ && <VideoViews>{videoInQ.views} Views &nbsp;<strong>::</strong>&nbsp; 19.12.2021</VideoViews>}
+            {videoInQ && <VideoViews>{videoInQ.views} Views &nbsp;<strong>::</strong>&nbsp; {String(videoInQ.createdAt.toDate()).slice(4, 15)}</VideoViews>}
             <LikesAndFavs>
               <LikesGroup>
                 {!preventDblClickRef.current && <ThumbsUpIcon onClick={thumbsUpClickHandler} />}
@@ -173,7 +173,7 @@ const HeartIcon = styled(IoHeart)`
 `
 
 
-/////////////////////
+///////////////////////////////////////
 //    Profile and description
 export const ProfileGroup = styled.div`
   display: flex;

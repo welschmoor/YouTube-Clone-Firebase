@@ -66,7 +66,7 @@ const VideoThumbnailCard = ({ e }) => {
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
             {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
-            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt, { addSuffix: true })}</ChannelName>}
+            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</ChannelName>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>
