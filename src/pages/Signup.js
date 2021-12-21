@@ -7,9 +7,10 @@ import { useSignup } from "../hooks/useSignup"
 import styled from "styled-components"
 import { SearchButton, SearchInput } from "../components/Header"
 import { MainWrapper } from "./Home"
-import { SignUpInWrapper } from "../STYLES/styleWrappers.js"
 import avatarDefault from "../static/avatarDefault.jpg"
-import { ParagraphDefault as P, Title, LinkStyled } from "../STYLES/styleText.js"
+import { IoPeople } from "react-icons/io5"
+import { SignUpInGrid, SignUpInWrapper } from "../STYLES/styleWrappers"
+import { Paragraph as P, Title, LinkStyled, SignInHighlightSpan } from "../STYLES/styleText.js"
 
 import ErrorMessage from "../components/ErrorMessage"
 import ErrorMessageDummy from "../components/ErrorMessageDummy"
@@ -67,10 +68,11 @@ const Signup = () => {
     <SignUpInWrapper>
       {avatarError && <ErrorMessage errorMessage={avatarError} />}
       {error ? <ErrorMessage errorMessage={error} /> : <ErrorMessageDummy />}
-      <Grid >
+      <SignUpInGrid >
         <div>
           <Title>Sign Up!</Title>
-          <LinkStyled to="/login"><P>Already have an account? Click here to sign in</P></LinkStyled>
+          <LinkStyled to="/login"><P>Already have an account? Click <SignInHighlightSpan>here</SignInHighlightSpan> to sign in</P></LinkStyled>
+          <SignUpIcon />
         </div>
         <Form name="signupform" onSubmit={submitHandler} >
           <LabelInputGroup>
@@ -93,7 +95,7 @@ const Signup = () => {
           </LabelInputGroup>
           <SignUpBtn>Sign Up!</SignUpBtn>
         </Form>
-      </Grid>
+      </SignUpInGrid>
     </SignUpInWrapper>
   )
 }
@@ -168,6 +170,7 @@ const FileLabel = styled.label`
     border-radius: 3px;
     font-size: 1rem;
     box-shadow: ${p => p.theme.boxShadowLight};
+    color: red;
   }  
 
 
@@ -187,5 +190,20 @@ export const SignUpBtn = styled(SearchButton)`
   font-size: 1rem;
   margin-top: 20px;
 `
+
+const SignUpIcon = styled(IoPeople)`
+  font-size: 17rem;
+  color: ${p => p.theme.secondCol};
+
+  @media (max-width: 700px ) {
+    display: none;
+  }
+
+  display: flex;
+  justify-content: center;
+`
+
+
+
 
 export default Signup

@@ -5,6 +5,10 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
 
+  :root {
+    --queryWidth: 700px;
+  }
+
   * {
     padding: 0;
     margin: 0;
@@ -69,6 +73,8 @@ export const darkTheme = {
   activeCol: "hsl(256, 73%, 80%) !important",
   searchInputBG: "hsl(240, 7%, 10%)",
 
+  inputOutline: "hsl(240, 7%, 30%)",
+
   light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
   bgCol: "#828286;",
 
@@ -81,13 +87,16 @@ export const darkTheme = {
   leftSideMargin: "27px",
 
   errorCol: "hsl(29, 100%, 50%)",
+
+
+  queryWidth: "var(--queryWidth)",
 }
 
 ////////////////////////
 //    LIGHT
 export const lightTheme = {
   navCol: "hsl(35, 18%, 87%)",
-  secondCol: "hsl(35, 18%, 87%)",
+  secondCol: "hsl(35, 18%, 90%)",
   thirdCol: "hsl(35, 18%, 77%)",
   fourthCol: "hsl(35, 08%, 31%)",
   fifthCol: "hsl(35, 18%, 65%)",
@@ -96,6 +105,8 @@ export const lightTheme = {
   homeBg: "hsl(35, 18%, 84%)",
   activeCol: "hsl(256, 43%, 60%) !important",
   searchInputBG: "hsl(35, 18%, 97%)",
+  
+  inputOutline: "hsl(240, 7%, 30%)",
 
   light2: "hsl(35, 23%, 76%)",
   bgCol: "#828286;",

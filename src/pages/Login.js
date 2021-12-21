@@ -4,12 +4,14 @@ import { useLogin } from "../hooks/useLogin"
 
 // styles
 import styled from "styled-components"
-import { Grid, Form, LabelInputGroup, Input, SignUpBtn, Label } from "./Signup"
+import { Form, LabelInputGroup, Input, SignUpBtn, Label } from "./Signup"
 import { SearchButton, SearchInput } from "../components/Header"
 import { MainWrapper } from "./Home"
-import { ParagraphDefault as P, Title, LinkStyled } from "../STYLES/styleText.js"
+import { Paragraph as P, Title, LinkStyled, SignInHighlightSpan } from "../STYLES/styleText.js"
 import ErrorMessage from "../components/ErrorMessage"
 import ErrorMessageDummy from "../components/ErrorMessageDummy"
+import { SignUpInWrapper, SignUpInGrid } from "../STYLES/styleWrappers.js"
+import { IoKey } from "react-icons/io5"
 
 
 const Signup = () => {
@@ -31,13 +33,14 @@ const Signup = () => {
 
 
   return (
-    <MainWrapper>
+    <SignUpInWrapper>
 
-      {error ? <ErrorMessage errorMessage={error}/> : <ErrorMessageDummy /> }
-      <Grid >
+      {error ? <ErrorMessage errorMessage={error} /> : <ErrorMessageDummy />}
+      <SignUpInGrid >
         <div>
           <Title>Log In Page</Title>
-          <LinkStyled to="/signup"><P>Don't have an account yet? Click here to create one!</P></LinkStyled>
+          <LinkStyled to="/signup"><P>Don't have an account yet?<br /> Click <SignInHighlightSpan>here</SignInHighlightSpan>SignInHighlightSpan to create one!</P></LinkStyled>
+          <KeyIcon />
         </div>
         <Form name="loginform" onSubmit={submitHandler} >
           <LabelInputGroup>
@@ -51,10 +54,23 @@ const Signup = () => {
 
           <SignUpBtn type="submit" >Log In</SignUpBtn>
         </Form>
-      </Grid>
-    </MainWrapper>
+      </SignUpInGrid>
+    </SignUpInWrapper>
   )
 }
+
+
+const KeyIcon = styled(IoKey)`
+  font-size: 17rem;
+  color: ${p => p.theme.secondCol};
+
+  @media (max-width: 700px ) {
+    display: none;
+  }
+
+  display: flex;
+  justify-content: center;
+`
 
 
 export default Signup

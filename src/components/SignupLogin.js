@@ -7,7 +7,7 @@ const SignupLogin = ({onClick}) => {
   return (
     <SLWrapper>
       <LoginNavLink to="/login" onClick={onClick} >Log In</LoginNavLink>
-      <SignUpBtn><SignUpNavLink to="/signup" onClick={onClick} >Sign Up</SignUpNavLink></SignUpBtn>
+      <SignUpNavLink to="/signup" onClick={onClick} ><SignUpBtn>Sign Up</SignUpBtn></SignUpNavLink>
     </SLWrapper>
   )
 }
@@ -40,11 +40,11 @@ const LoginNavLink = styled(NavLink)`
 
 const SignUpNavLink = styled(NavLink)`
   text-decoration: none;
-  font-size: 0.8rem;
-  color: ${p=>p.theme.textCol};
 `
 
 const SignUpBtn = styled(SearchButton)`
+  font-size: 0.8rem;
+  color: ${p=>p.theme.textCol};
   width: 90px;
   &:hover {
     box-shadow: 0px 0px 0px 1px hsl(240, 7%, 70%);
