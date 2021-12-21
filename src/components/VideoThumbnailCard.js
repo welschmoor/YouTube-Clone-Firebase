@@ -24,8 +24,11 @@ import { useAuthContext } from "../hooks/useAuthContext"
 import { useCollection } from "../hooks/useCollection"
 import { Link as LinkNeedsStyle, useParams } from "react-router-dom"
 import { IoCheckmarkCircleSharp } from "react-icons/io5"
+import formatDistanceToNow from "date-fns//formatDistanceToNow"
 
 import { firestore } from "../firebase"
+
+
 
 const VideoThumbnailCard = ({ e }) => {
   const { user } = useAuthContext()
@@ -40,7 +43,7 @@ const VideoThumbnailCard = ({ e }) => {
   useEffect(() => {
     if (documents) {
       channelPic = documents.find(each => each.uid === e.createdBy.id)
-     
+
       if (channelPic) {
         setPicURL(channelPic.photoURL)
         setDisplayName(channelPic.displayName)
@@ -63,7 +66,7 @@ const VideoThumbnailCard = ({ e }) => {
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
             {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
-            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; 2 months ago</ChannelName>}
+            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt, { addSuffix: true })}</ChannelName>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>

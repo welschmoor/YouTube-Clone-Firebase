@@ -48,6 +48,7 @@ const SettingsWrapper = styled.aside`
   min-height: 440px;
   height: 50vh;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.336);
+
 `
 
 const SidebarPlane = styled.div`

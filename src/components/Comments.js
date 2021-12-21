@@ -17,6 +17,7 @@ const Comments = ({ videoID, videoInQ }) => {
   const submitHandler = async e => {
     e.preventDefault()
 
+    // error here createAt instead of createdAt !!!
     const newComment = {
       displayName: user.displayName,
       photoURL: user.photoURL,

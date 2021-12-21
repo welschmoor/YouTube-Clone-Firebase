@@ -49,6 +49,7 @@ const CreateNewVideo = () => {
       views: 0,
       likes: 0,
       createdBy: createdBy,
+      createdAt: timestamp.fromDate(new Date()),
     }
 
     console.log("newVideo", newVideo)
@@ -59,7 +60,7 @@ const CreateNewVideo = () => {
       const videoResponse = await storage.ref(uploadPath).put(file)
       const videoUrl = await videoResponse.ref.getDownloadURL()
 
-      console.log("thumbnail: ",thumbnail)
+      console.log("thumbnail: ", thumbnail)
 
 
       const uploadPath2 = `thumbnails/${thumbnail.name}`
@@ -75,6 +76,7 @@ const CreateNewVideo = () => {
         views: 0,
         likes: 0,
         createdBy: createdBy,
+        createdAt: timestamp.fromDate(new Date()),
       })
 
       navigate('/')
@@ -134,7 +136,7 @@ const CreateNewVideo = () => {
 
 
 
-  
+
   return (
     <MainWrapper>
       {fileError && <div>{fileError}</div>}

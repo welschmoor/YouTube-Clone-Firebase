@@ -1,6 +1,12 @@
 todo:
-like button implement (update like count on button click)
-implement favorites list (probably by adding favorites to users collection? or creating a new collection "favorites" altogether?)
+
+Handle Signup/Login errors, password min length, DisplayName max length
+
+implement favorites list (probably by adding favorites to users collection? or creating a new collection "favorites" altogether? or use local storage?)
+
+I think it's better to do it by creating an array of favorited videos
+
+default avatar if person selects nothing.
 
 # YouTube Clone
 

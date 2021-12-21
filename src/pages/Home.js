@@ -7,7 +7,7 @@ import VideoThumbnailCard from "../components/VideoThumbnailCard"
 
 const Home = () => {
   const { documents, error } = useCollection('videos')
-
+  console.log("videodocs:::", documents)
 
   return (
     <MainWrapper>

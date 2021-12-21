@@ -2,10 +2,11 @@
 
 import { ProfileGroup, AvatarIMG, ProfileName, Description } from "../pages/Watch"
 import styled from "styled-components"
+import formatDistanceToNow from "date-fns//formatDistanceToNow"
 
 
 const CommentSingle = ({ e }) => {
- 
+
   return (
     <>
       <ProfileGroup>

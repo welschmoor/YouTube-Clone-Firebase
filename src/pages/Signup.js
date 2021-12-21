@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { MainWrapper } from "./Home"
 import { SearchButton, SearchInput } from "../components/Header"
 import { useSignup } from "../hooks/useSignup"
-
+import avatarDefault from "../static/avatarDefault.jpg"
 
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -15,13 +15,15 @@ const Signup = () => {
   const { signup, isPending, error } = useSignup()
 
 
+  // AVATAR Picture handler. If too big, error.
   const fileInputHandler = (e) => {
     setAvatar(null)
     setAvatarError(null)
     let file = e.target.files[0]
 
     if (!file) {
-      setAvatarError('Please, select a file')
+      setAvatar(URL.createObjectURL(avatarDefault))
+      // setAvatarError('Please, select a file')
       return
     }
     if (!file.type.includes("image")) {
@@ -77,12 +79,10 @@ const Signup = () => {
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-
 `
 
 export const Title = styled.h3`
-  
+
 `
 
 export const Form = styled.form`
