@@ -2,9 +2,9 @@
 import styled from "styled-components"
 
 
-
 ///////////////////////////////////////
 //    Profile and description
+
 export const ProfileGroup = styled.div`
   display: flex;
   gap: 20px;

@@ -11,20 +11,22 @@ const Home = () => {
 
   return (
     <MainWrapper>
-      <HomeGrid >
-        {documents && documents.map(e => {
-          return (
-            <VideoThumbnailCard e={e} key={e.id} />
-          )
-        })}
-      </HomeGrid>
+      <BorderWrapper>
+        <HomeGrid >
+          {documents && documents.map(e => {
+            return (
+              <VideoThumbnailCard e={e} key={e.id} />
+            )
+          })}
+        </HomeGrid>
+      </BorderWrapper>
     </MainWrapper>
   )
 }
 
 export const MainWrapper = styled.div`
   padding: 80px 20px 20px 100px;
-  background-color: ${p=>p.theme.homeBg};
+  background-color: ${p => p.theme.homeBg};
 
   @media (max-width: 700px ) {
     padding: 80px 20px 20px 20px;
@@ -32,7 +34,12 @@ export const MainWrapper = styled.div`
 
 `
 
+const BorderWrapper = styled.div`
+
+`
+
 const HomeGrid = styled.div`
+  
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;

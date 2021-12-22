@@ -36,11 +36,9 @@ const NameAndTime = styled.div`
 
 const Time = styled.p`
   font-size: 0.8rem !important;
-  color:  ${p => p.theme.thirdCol};
-  
+  color:  ${p => p.theme.commentTimeCol};
   width: 110px;
-  top: -37px;
-  left: -82px;
+
 `
 
 

@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: ${p => p.theme.secondCol};
+    background-color: ${p => p.theme.scrollbarCol};
   }
 `
 
@@ -87,10 +87,12 @@ export const darkTheme = {
   leftSideMargin: "27px",
 
   errorCol: "hsl(29, 100%, 50%)",
+  commentTimeCol: "hsl(240, 6.976744186046512%, 33.862745098039216%)",
 
-
+  scrollbarCol: "hsl(240, 6.97%, 23.86%)",
   queryWidth: "var(--queryWidth)",
 }
+
 
 ////////////////////////
 //    LIGHT
@@ -119,5 +121,8 @@ export const lightTheme = {
   hideSidebar: "none",
   leftSideMargin: "27px",
 
+  scrollbarCol: "hsl(35, 14%, 70%)",
+  commentTimeCol: "hsl(35, 6.976744186046512%, 63.862745098039216%)",
+  
   errorCol: "hsl(0, 80%, 50%)",
 }

@@ -30,12 +30,12 @@ const ProfilePicAndName = styled.div`
   gap: 8px;
   align-items: center;
   margin: 10px 0px; 
-  margin-top: 60px;
+  margin-top: 40px;gui
 `
 
 const IMG = styled.img`
   position: absolute;
-  top: 82px;
+  top: 60px;
   left: 203px;
   border-radius: 50%;
   width: 70px;

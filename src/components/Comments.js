@@ -1,11 +1,12 @@
 
 import { useState } from "react"
-import { timestamp } from "../firebase"
+import { timestamp, firestore } from "../firebase"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { firestore } from "../firebase"
 import { Link as LinkNeedsStyle } from "react-router-dom"
 
+// styles
 import styled from "styled-components"
+
 import { SearchButton } from "./Header"
 import CommentSingle from "./CommentSingle"
 

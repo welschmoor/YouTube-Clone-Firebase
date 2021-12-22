@@ -1,4 +1,8 @@
 
+/*
+  Watch is the page for each individual video
+*/
+
 /// !!! this is an example of how to make a counter update on mount
 /// took me a lot of time to figure it out, you need both a ref and an extra useState
 
@@ -13,6 +17,7 @@ import { MainWrapper } from "./Home"
 import { useParams } from "react-router-dom"
 import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io"
 import { IoHeart } from "react-icons/io5"
+import { ProfileGroup, AvatarIMG, ProfileName, Description } from "../STYLES/styleProfile"
 
 import Comments from "../components/Comments"
 import VideoCard from "../components/VideoCard"
@@ -175,32 +180,32 @@ const HeartIcon = styled(IoHeart)`
 
 ///////////////////////////////////////
 //    Profile and description
-export const ProfileGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-`
+// export const ProfileGroup = styled.div`
+//   display: flex;
+//   gap: 20px;
+//   align-items: center;
+// `
 
-export const AvatarIMG = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+// export const AvatarIMG = styled.img`
+//   width: 70px;
+//   height: 70px;
+//   border-radius: 50%;
 
-`
+// `
 
-export const ProfileName = styled.h6`
-  font-size: 1rem;
+// export const ProfileName = styled.h6`
+//   font-size: 1rem;
   
-`
+// `
 
-export const Description = styled.p`
-  font-size: 0.8rem;
-  color: ${p => p.theme.fourthCol};
-  border-left: 1px solid ${p => p.theme.thirdCol};
-  padding: 20px;
-  padding-right: 0px;
-  margin-left: 3px;
-`
+// export const Description = styled.p`
+//   font-size: 0.8rem;
+//   color: ${p => p.theme.fourthCol};
+//   border-left: 1px solid ${p => p.theme.thirdCol};
+//   padding: 20px;
+//   padding-right: 0px;
+//   margin-left: 3px;
+// `
 
 /////////////////////
 //    ICONS

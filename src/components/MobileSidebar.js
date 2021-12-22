@@ -65,14 +65,11 @@ const MobileWrapper = styled.aside`
 
 const NAV = styled.nav`
   margin-top: 30px;
-
 `
 
 const UL = styled.ul`
   display: flex;
   flex-direction: column;
-
-
   list-style: none;
 `
 
