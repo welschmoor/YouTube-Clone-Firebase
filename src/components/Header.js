@@ -53,6 +53,7 @@ const Wrapper = styled.header`
     height: 60px;
     display: flex;
     justify-content: space-between;
+    /* box-shadow: -0.3px -0.3px 0 0.1px ${p => p.theme.textCol} inset; */
 
 `
 export const Logo = styled.h2`

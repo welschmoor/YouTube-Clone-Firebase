@@ -62,13 +62,15 @@ export const GlobalStyle = createGlobalStyle`
 ////////////////////////
 //    DARK
 export const darkTheme = {
+
+  // BG Colors
   navCol: "rgb(40, 40, 46)",
   secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
   thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%);",
   fourthCol: "rgb(158, 158, 168)",
   fifthCol: "hsl(240, 6.976744186046512%, 39.862745098039216%);",
-
   homeBg: "rgb(30, 30, 36)",
+
   iconCol: "rgb(238, 238, 238)",
   activeCol: "hsl(256, 73%, 80%) !important",
   searchInputBG: "hsl(240, 7%, 10%)",
@@ -97,17 +99,22 @@ export const darkTheme = {
 ////////////////////////
 //    LIGHT
 export const lightTheme = {
+
+  // BG Colors
+  // navCol: "hsl(35, 18%, 87%)",
   navCol: "hsl(35, 18%, 87%)",
   secondCol: "hsl(35, 18%, 90%)",
   thirdCol: "hsl(35, 18%, 77%)",
   fourthCol: "hsl(35, 08%, 31%)",
   fifthCol: "hsl(35, 18%, 65%)",
+  // homeBg: "hsl(35, 18%, 84%)",
+  homeBg: "hsl(35, 18%, 84%)",
+
 
   iconCol: "#524949",
-  homeBg: "hsl(35, 18%, 84%)",
   activeCol: "hsl(256, 43%, 60%) !important",
   searchInputBG: "hsl(35, 18%, 97%)",
-  
+
   inputOutline: "hsl(240, 7%, 30%)",
 
   light2: "hsl(35, 23%, 76%)",
@@ -123,6 +130,6 @@ export const lightTheme = {
 
   scrollbarCol: "hsl(35, 14%, 70%)",
   commentTimeCol: "hsl(35, 6.976744186046512%, 63.862745098039216%)",
-  
+
   errorCol: "hsl(0, 80%, 50%)",
 }

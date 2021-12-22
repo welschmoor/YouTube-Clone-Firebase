@@ -1,5 +1,8 @@
 todo:
 
+apply light gradient to top and side of HOME to make contrast higher 
+
+
 Handle Signup/Login errors, password min length, DisplayName max length
 
 implement favorites list (probably by adding favorites to users collection? or creating a new collection "favorites" altogether? or use local storage?)

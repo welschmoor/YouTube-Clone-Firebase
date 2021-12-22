@@ -54,7 +54,7 @@ const Wrapper = styled.aside`
   height: 100%;
   width: 80px;
   position: fixed;
-
+  /* box-shadow: -0.3px -1.3px 0 0.1px ${p => p.theme.textCol} inset; */
 
   @media (max-width: 700px ) {
     display: none;
