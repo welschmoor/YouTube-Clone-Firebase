@@ -18,7 +18,7 @@ const Header = ({ hamburgerClick, settingsHandler }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    navigate(`/search/${searchTerm}`)
+    navigate(`/search/${searchTerm.trim().toLowerCase()}`)
     setSearchTerm('')
   }
 

@@ -154,7 +154,7 @@ const CreateNewVideo = () => {
             <Input type="text" name="video-description" id="video-description" required onChange={(e) => setVideoDescription(e.target.value)} value={videoDescription} />
           </LabelInputGroup>
           <LabelInputGroup>
-            <Label htmlFor="videofile">Choose You Video</Label>
+            <Label htmlFor="videofile">Choose Your Video</Label>
             <Input type="file" name="videofile" id="videofile" onChange={fileInputHandler} required />
           </LabelInputGroup>
           <LabelInputGroup>
