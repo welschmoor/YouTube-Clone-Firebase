@@ -40,6 +40,7 @@ export const useSignup = () => {
         displayName: displayName,
         photoURL: avatar ? imgUrl : defaultAvatarULR,
         uid: res.user.uid,
+        favorites: [],
       })
 
       // dispatch login action

@@ -1,13 +1,14 @@
 
 import { useState } from "react"
-import styled from "styled-components"
 import { storage, timestamp, firestore } from "../firebase"
 import { useNavigate } from "react-router-dom"
-
-import { MainWrapper as MainWrapperStyle } from "./Home"
-import { Grid, Form as FormToStyle, LabelInputGroup as LabelInputGroupUnstyled, Input, SignUpBtn, Label } from "./Signup"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useFirestore } from "../hooks/useFirestore"
+
+// styles
+import styled from "styled-components"
+import { MainWrapper as MainWrapperStyle } from "./Home"
+import { Grid, Form as FormToStyle, LabelInputGroup as LabelInputGroupUnstyled, Input, SignUpBtn, Label } from "./Signup"
 
 
 const CreateNewVideo = () => {
@@ -164,7 +165,6 @@ const CreateNewVideo = () => {
             <SignUpBtn>Upload Video</SignUpBtn>
           </LabelInputGroup>
         </Form>
-
       </ContentWrapper>
     </MainWrapper>
   )

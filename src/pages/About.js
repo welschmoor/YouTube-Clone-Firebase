@@ -22,6 +22,7 @@ const About = () => {
   )
 }
 
+
 const MainWrapper = styled(AboutWrapper)`
   display: flex;
   flex-direction: column;

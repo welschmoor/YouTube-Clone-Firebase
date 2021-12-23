@@ -58,7 +58,11 @@ const Wrapper = styled.aside`
 
   @media (max-width: 700px ) {
     display: none;
-  }
+  };
+
+  
+
+  
   
 `
 

@@ -66,8 +66,8 @@ const Signup = () => {
 
   return (
     <SignUpInWrapper>
-      {avatarError && <ErrorMessage errorMessage={avatarError} />}
-      {error ? <ErrorMessage errorMessage={error} /> : <ErrorMessageDummy />}
+      {/* {avatarError && <ErrorMessage errorMessage={avatarError} />} */}
+      {error ? <ErrorMessage errorMessage={error || avatarError} /> : <ErrorMessageDummy />}
       <SignUpInGrid >
         <div>
           <Title>Sign Up!</Title>
@@ -88,8 +88,8 @@ const Signup = () => {
             <Input type="text" name="displayname" id="displayname" required onChange={e => setDisplayName(e.target.value.slice(0, 10))} value={displayName} placeholder="maximum 10 characters long" />
           </LabelInputGroup>
           <LabelInputGroup>
-            <Label htmlFor="file">Upload Avatar Picture (not required)</Label>
-            <FileLabel htmlFor="file">Click here to choose .jpg
+            <Label htmlFor="file">Upload Avatar Picture <GreySpan>(not required)</GreySpan></Label>
+            <FileLabel htmlFor="file"><span>Click here to choose .jpg</span>
               <Input type="file" name="avatar" id="file" avatar onChange={fileInputHandler} style={{ display: "none" }} />
             </FileLabel>
           </LabelInputGroup>
@@ -173,14 +173,27 @@ const FileLabel = styled.label`
     color: red;
   }  
 
-
-
   width: 100%;
   max-width: 400px;
   font-size: 1rem;
   padding: 10px 20px;
   background-color: ${p => p.theme.navCol};
   
+  span {
+    color: ${p => p.theme.fourthCol};
+    text-shadow: none;
+    font-size: 0.8rem;
+    transform: translateY(4px);
+  }
+
+`
+
+const GreySpan = styled.span`
+  color: ${p => p.theme.commentTimeCol};
+  text-shadow: none;
+
+  transform: translateY(4px);
+
 `
 
 export const SignUpBtn = styled(SearchButton)`

@@ -1,7 +1,12 @@
 todo:
 
-apply light gradient to top and side of HOME to make contrast higher 
+implement search results!
 
+footer 
+
+create individual channels /channel/:userUID
+
+redo the Likes, so that they are saved in DB
 
 Handle Signup/Login errors, password min length, DisplayName max length
 
@@ -10,6 +15,9 @@ implement favorites list (probably by adding favorites to users collection? or c
 I think it's better to do it by creating an array of favorited videos
 
 default avatar if person selects nothing.
+
+change Light Mode color contrast
+
 
 # YouTube Clone
 

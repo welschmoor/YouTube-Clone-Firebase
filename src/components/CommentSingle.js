@@ -14,7 +14,7 @@ const CommentSingle = ({ e }) => {
         <NameAndTime>
           <ProfileName>{e.displayName}</ProfileName>
         </NameAndTime>
-        <Description style={{ fontSize: "0.9rem" }}>{e.comment}</Description>
+        <CommentContent>{e.comment}</CommentContent>
         <Time>{formatDistanceToNow(e.createAt.toDate(), { addSuffix: true })}</Time>
       </ProfileGroup>
     </>
@@ -34,11 +34,16 @@ const NameAndTime = styled.div`
 
 `
 
+const CommentContent = styled(Description)`
+  font-size: 0.9rem;
+  flex-shrink: 2;
+`
+
 const Time = styled.p`
   font-size: 0.8rem !important;
   color:  ${p => p.theme.commentTimeCol};
   width: 110px;
-
+  flex-shrink: 1;
 `
 
 

@@ -11,6 +11,13 @@ Styled paragraphs, titles and so on
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+// Text of the main Logo, used in: Footer, Header, MobileSidebar
+export const Logo = styled.h2`
+  font-size: 1.1rem;
+  font-weight: 400;
+
+  color: ${p => p.theme.iconCol};
+`
 
 export const Paragraph = styled.p`
   font-size: 1rem;

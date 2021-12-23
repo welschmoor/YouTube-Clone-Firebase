@@ -34,7 +34,7 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5"
 
 
 
-const VideoThumbnailCard = ({ e }) => {
+const VideoThumbnailCardFavorites = ({ e }) => {
   const { user } = useAuthContext()
   const { documents } = useCollection('users')
   const [picURL, setPicURL] = useState('')
@@ -64,12 +64,15 @@ const VideoThumbnailCard = ({ e }) => {
       </Thumbnail>
 
       <ChannelGrid>
-        {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
         <TitleAndChannelName>
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
-            {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
             {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</ChannelName>}
+            <PicAndName>
+              {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
+              {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
+            </PicAndName>
+            {displayName && <ChannelName>{e.videoDescription}</ChannelName>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>
@@ -79,35 +82,39 @@ const VideoThumbnailCard = ({ e }) => {
 }
 
 
+const PicAndName = styled.div`
+  display: flex;
+  gap: 13px;
+  align-items: center;
+`
+
 const VTCwrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 `
 
 const ChannelGrid = styled.div`
   display: grid;
-  grid-template-columns: 70px 1fr;
+  grid-template-columns:1fr;
   column-gap: 4px;
-
 `
 
 const TitleAndChannelName = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 `
 
 const ChannelNameAndViews = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 13px;
 
 `
 
 const Thumbnail = styled.div`
-  min-width: 300px;
-  max-width: 660px;
+  min-width: 340px;
+  max-width: 340px;
   display: block;
   cursor: pointer;
 `
@@ -127,8 +134,8 @@ const IMGavatar = styled.img`
 `
 
 const AvatarDiv = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 
 `
 
@@ -145,4 +152,4 @@ const Link = styled(LinkNeedsStyle)`
   color: ${p => p.theme.textCol};
 `
 
-export default VideoThumbnailCard
+export default VideoThumbnailCardFavorites

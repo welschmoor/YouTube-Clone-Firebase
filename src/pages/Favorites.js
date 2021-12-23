@@ -1,17 +1,34 @@
+import { useState, useEffect, useRef } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
+import { useCollection } from "../hooks/useCollection"
 
+// styles
 import styled from "styled-components"
-import { MainWrapper } from "./Home"
-import { SignUpInWrapper } from "../STYLES/styleWrappers"
-import { ParagraphDefault, Title } from "../STYLES/styleText"
+import { SignUpInWrapper, MainWrapper } from "../STYLES/styleWrappers"
+import { Paragraph as P, Title } from "../STYLES/styleText"
+import { LinkStyled, SignInHighlightSpan } from "../STYLES/styleText"
+
+import FavoritesList from "../components/FavoritesList"
+
 
 const Favorites = () => {
+  const { user } = useAuthContext()
+  const { documents: users } = useCollection('users')
+  const { documents: videos } = useCollection('videos')
+
+
   return (
     <MainWrapper>
-      <Title>Favorites Page</Title>
+      {!user && <Title style={{ fontSize: "1.2rem" }}>Favorites Page</Title>}
+      {user && <Title style={{ fontSize: "1.2rem" }}>Your Favorites</Title>}
+      
+      {user && (
+        users && videos && <FavoritesList users={users} videos={videos} user={user} />
+      )}
 
-      <p>
-        Oh, boy, it's empty in here! Click the heart logo under the video to add it to favorites, so you can watch it later!
-      </p>
+      {!user && (
+        <P><LinkStyled to="/login">You need to be <SignInHighlightSpan>logged in</SignInHighlightSpan> to see your favorites!</LinkStyled></P>
+      )}
     </MainWrapper>
   )
 }

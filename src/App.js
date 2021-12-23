@@ -22,6 +22,7 @@ import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import CreateNewVideo from "./pages/CreateNewVideo"
 import Page404 from "./pages/Page404"
+import Search from "./pages/Search"
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
                 <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
                 <Route path="/watch/:id" element={<Watch />} />
+                <Route path="/search/:query" element={<Search />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
             )}

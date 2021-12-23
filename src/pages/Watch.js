@@ -10,6 +10,7 @@
 import { firestore } from "../firebase"
 import { useState, useEffect, useRef } from "react"
 import { useCollection } from "../hooks/useCollection"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 // styles
 import styled from "styled-components"
@@ -24,14 +25,20 @@ import VideoCard from "../components/VideoCard"
 
 
 const Watch = () => {
+  const { user } = useAuthContext()
   const { documents, error } = useCollection('videos')
-  // const { documents: usersCollection } = useCollection('users')
+  const { documents: users } = useCollection('users')
   const [videoInQ, setVideoInQ] = useState(null)
+  const [previousFavorites, setPreviousFavorites] = useState(null)
+  const [favClicked, setFavClicked] = useState(false)
+
   const [views, setViews] = useState(videoInQ?.views)
   const { id } = useParams()
 
-  const preventDblClickRef = useRef(false)
-  const preventDblClickRef2 = useRef(false)
+  const preventDblClickRef = useRef(false)  // update likes
+  const preventDblClickRef2 = useRef(false) // update views
+  const preventDblClickRef3 = useRef(false) // update favorites
+
 
   /// relevant code for updating views?
   useEffect(() => {
@@ -41,8 +48,8 @@ const Watch = () => {
 
     if (documents) {
       setVideoInQ(documents.find(e => id === e.id))
-
     }
+
     if (videoInQ) {
       if (preventDblClickRef2.current) return
       updateViewsFirestore()
@@ -60,6 +67,38 @@ const Watch = () => {
     preventDblClickRef.current = true
   }
 
+
+  // catch favorites that the user already has
+  useEffect(() => {
+    if (!user) return
+
+    setPreviousFavorites(users?.find(e => e.uid === user.uid).favorites)
+  }, [users, id, user])
+
+  // if id of a video is in favorite list, then set icon to "clicked"
+  useEffect(() => {
+    if (previousFavorites) {
+      if (previousFavorites.includes(id)) {
+        setFavClicked(true)
+      }
+    }
+  }, [previousFavorites])
+
+
+  // const previousFavoritesConst = users?.find(e => e.uid === user.uid).favorites // old code
+  const favoritesHandler = async () => {
+    if (!user) return
+    
+    setFavClicked(p => !p)
+    if (!favClicked && !previousFavorites.includes(id)) {
+      await firestore.collection('users').doc(user.uid).update({ favorites: [id, ...previousFavorites] })
+    }
+    else {  // else remove the video from favorites on click
+      const filterToRemoveThisVideo = previousFavorites.filter(e => e !== id)
+      await firestore.collection('users').doc(user.uid).update({ favorites: [...filterToRemoveThisVideo] })
+    }
+  }
+
   return (
     <MainWrapper>
       <WatchWrapperGrid>
@@ -70,15 +109,19 @@ const Watch = () => {
 
             {videoInQ && <VideoViews>{videoInQ.views} Views &nbsp;<strong>::</strong>&nbsp; {String(videoInQ.createdAt.toDate()).slice(4, 15)}</VideoViews>}
             <LikesAndFavs>
+
               <LikesGroup>
                 {!preventDblClickRef.current && <ThumbsUpIcon onClick={thumbsUpClickHandler} />}
                 {preventDblClickRef.current && <ThumbsUpIconClicked onClick={thumbsUpClickHandler} />}
                 {videoInQ && <VideoViews>{videoInQ.likes} Likes &nbsp;</VideoViews>}
               </LikesGroup>
+
               <FavoritesGroup>
-                <HeartIcon />
+                {!favClicked && <HeartIcon onClick={favoritesHandler} />}
+                {favClicked && <HeartIconClicked onClick={favoritesHandler} />}
                 <VideoViews>Add to Favorites &nbsp;</VideoViews>
               </FavoritesGroup>
+
             </LikesAndFavs>
 
           </ViewsAndThumbs>
@@ -141,8 +184,6 @@ const VideoViews = styled.h6`
 `
 
 
-
-
 /////////////////////
 //    LIKES
 
@@ -176,36 +217,12 @@ const HeartIcon = styled(IoHeart)`
   cursor: pointer;
   transform: translateY(-2px);
 `
+const HeartIconClicked = styled(IoHeart)`
+  color: ${p => p.theme.textCol};
+  cursor: pointer;
+  transform: translateY(-2px);
+`
 
-
-///////////////////////////////////////
-//    Profile and description
-// export const ProfileGroup = styled.div`
-//   display: flex;
-//   gap: 20px;
-//   align-items: center;
-// `
-
-// export const AvatarIMG = styled.img`
-//   width: 70px;
-//   height: 70px;
-//   border-radius: 50%;
-
-// `
-
-// export const ProfileName = styled.h6`
-//   font-size: 1rem;
-  
-// `
-
-// export const Description = styled.p`
-//   font-size: 0.8rem;
-//   color: ${p => p.theme.fourthCol};
-//   border-left: 1px solid ${p => p.theme.thirdCol};
-//   padding: 20px;
-//   padding-right: 0px;
-//   margin-left: 3px;
-// `
 
 /////////////////////
 //    ICONS

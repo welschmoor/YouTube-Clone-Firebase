@@ -24,11 +24,8 @@ const Signup = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-
     console.log("login submitted")
-
     login(email, password)
-
   }
 
 
@@ -39,7 +36,7 @@ const Signup = () => {
       <SignUpInGrid >
         <div>
           <Title>Log In Page</Title>
-          <LinkStyled to="/signup"><P>Don't have an account yet?<br /> Click <SignInHighlightSpan>here</SignInHighlightSpan>SignInHighlightSpan to create one!</P></LinkStyled>
+          <LinkStyled to="/signup"><P>Don't have an account yet?<br /> Click <SignInHighlightSpan>here</SignInHighlightSpan> to create one!</P></LinkStyled>
           <KeyIcon />
         </div>
         <Form name="loginform" onSubmit={submitHandler} >

@@ -1,19 +1,19 @@
 
 import React from "react"
-import styled from "styled-components"
 import { useLogout } from "../hooks/useLogout"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { NavLink as NavLinkToStyle, Navigate } from "react-router-dom"
 
-import { Hamburger, LogoWrapper, Logo } from "./Header"
+// styles
+import styled from "styled-components"
+import { Hamburger, LogoWrapper } from "./Header"
+import { Logo } from "../STYLES/styleText"
 import { IconFavorites, IconHome, CreateNewIcon } from "./Sidebar"
 import { Separator } from "./Profile"
 
-
+import LogoComponent from "./LogoComponent"
 import SignupLogin from "./SignupLogin"
 import Profile from "./Profile.js"
-
-import { NavLink as NavLinkToStyle, Navigate } from "react-router-dom"
-
 
 
 const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
@@ -27,7 +27,7 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
       <MobileWrapper style={{ "left": sideBarOpen ? "0" : "-100%" }}>
         <LogoWrapper>
           <Hamburger onClick={hamburgerClick} />
-          <Logo>YouTube</Logo>
+          <LogoComponent />
         </LogoWrapper>
 
         {user && <Profile logout={logout} src={user.photoURL} username={user.displayName} />}
@@ -50,7 +50,7 @@ const MobileSidebar = ({ sideBarOpen, hamburgerClick }) => {
 
 
 const MobileWrapper = styled.aside`
-  padding-top: 17px;
+  padding-top: 16px;
   z-index: 12;
   position: fixed;
   background-color: ${p => p.theme.navCol};

@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    
   }
 
   html {
@@ -56,6 +58,8 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 4px;
     background-color: ${p => p.theme.scrollbarCol};
   }
+
+
 `
 
 
@@ -65,10 +69,10 @@ export const darkTheme = {
 
   // BG Colors
   navCol: "rgb(40, 40, 46)",
-  secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%);",
-  thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%);",
+  secondCol: "hsl(240, 6.976744186046512%, 23.862745098039216%)",
+  thirdCol: "hsl(240, 6.976744186046512%, 33.862745098039216%)",
   fourthCol: "rgb(158, 158, 168)",
-  fifthCol: "hsl(240, 6.976744186046512%, 39.862745098039216%);",
+  fifthCol: "hsl(240, 6.976744186046512%, 39.862745098039216%)",
   homeBg: "rgb(30, 30, 36)",
 
   iconCol: "rgb(238, 238, 238)",
@@ -77,8 +81,8 @@ export const darkTheme = {
 
   inputOutline: "hsl(240, 7%, 30%)",
 
-  light2: "hsl(240, 6.976744186046512%, 27.862745098039216%);",
-  bgCol: "#828286;",
+  light2: "hsl(240, 6.976744186046512%, 27.862745098039216%)",
+  bgCol: "#828286",
 
   cardCol: "hsl(0, 15.183246073298434%, 37.450980392156865%)",
   textCol: "rgb(238, 238, 238)",
@@ -118,7 +122,7 @@ export const lightTheme = {
   inputOutline: "hsl(240, 7%, 30%)",
 
   light2: "hsl(35, 23%, 76%)",
-  bgCol: "#828286;",
+  bgCol: "#828286",
 
   cardCol: "hsl(0, 15.183246073298434%, 37.450980392156865%)",
   textCol: "#524949",

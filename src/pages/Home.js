@@ -5,12 +5,13 @@ import styled from "styled-components"
 import { useCollection } from "../hooks/useCollection"
 import VideoThumbnailCard from "../components/VideoThumbnailCard"
 
+
 const Home = () => {
   const { documents, error } = useCollection('videos')
-  console.log("videodocs:::", documents)
 
+  
   return (
-    <MainWrapper>
+    <MainWrapper >
       <BorderWrapper>
         <HomeGrid >
           {documents && documents.map(e => {
@@ -24,14 +25,14 @@ const Home = () => {
   )
 }
 
+
 export const MainWrapper = styled.div`
   padding: 80px 20px 20px 100px;
   background-color: ${p => p.theme.homeBg};
 
   @media (max-width: 700px ) {
     padding: 80px 20px 20px 20px;
-  }
-
+  };
 `
 
 const BorderWrapper = styled.div`
@@ -39,7 +40,8 @@ const BorderWrapper = styled.div`
 `
 
 const HomeGrid = styled.div`
-  
+
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;
