@@ -26,7 +26,7 @@ const FavoritesList = ({ videos, users, user }) => {
 
   return (
     <FavGrid>
-      {filteredVids.length > 0 && filteredVids.map(e => <VideoThumbnailCardFavorites e={e} key={e.id} />)}
+      {filteredVids.length > 0 && filteredVids.map(e => <VideoThumbnailCardFavorites e={e} key={e.id} user={user} users={users} documents={videos} />)}
       {filteredVids.length < 1 && <P>You have no favorites! Click on the heart <HeartIcon /> symbol under the video to save it!</P>}
     </FavGrid>
   )

@@ -34,18 +34,17 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5"
 
 
 
-const VideoThumbnailCardFavorites = ({ e }) => {
-  const { user } = useAuthContext()
+const VideoThumbnailCardFavorites = ({ e, users, user }) => {
+
   const { documents } = useCollection('users')
   const [picURL, setPicURL] = useState('')
   const [displayName, setDisplayName] = useState('')
-  const [count, setCount] = useState(0)
+  const [channelPic, setChannelPic] = useState(null)
 
-  let channelPic = null
 
   useEffect(() => {
     if (documents) {
-      channelPic = documents.find(each => each.uid === e.createdBy.id)
+      setChannelPic(documents.find(each => each.uid === e.createdBy.id))
 
       if (channelPic) {
         setPicURL(channelPic.photoURL)
@@ -57,27 +56,29 @@ const VideoThumbnailCardFavorites = ({ e }) => {
 
 
   return (
-    <VTCwrapper>
+    <>
+      {channelPic && (<> <VTCwrapper>
 
-      <Thumbnail controls>
-        <Link to={`/watch/${e.id}`} ><IMG src={e.thumbnailURL} type="video/mp4" /></Link>
-      </Thumbnail>
+        <Thumbnail controls>
+          <Link to={`/watch/${e.id}`} ><IMG src={e.thumbnailURL} type="video/mp4" /></Link>
+        </Thumbnail>
 
-      <ChannelGrid>
-        <TitleAndChannelName>
-          <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
-          <ChannelNameAndViews>
-            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</ChannelName>}
-            <PicAndName>
-              {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
-              {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
-            </PicAndName>
-            {displayName && <ChannelName>{e.videoDescription}</ChannelName>}
-          </ChannelNameAndViews>
-        </TitleAndChannelName>
-      </ChannelGrid>
+        <ChannelGrid>
+          <TitleAndChannelName>
+            <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
+            <ChannelNameAndViews>
+              {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</ChannelName>}
+              <PicAndName>
+                {picURL && <AvatarDiv><IMGavatar src={picURL} alt="avatar" /></AvatarDiv>}
+                {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
+              </PicAndName>
+              {displayName && <ChannelName>{e.videoDescription}</ChannelName>}
+            </ChannelNameAndViews>
+          </TitleAndChannelName>
+        </ChannelGrid>
 
-    </VTCwrapper>
+      </VTCwrapper></>)}
+    </>
   )
 }
 

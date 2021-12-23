@@ -5,6 +5,8 @@
 //  they are displayed instead of a real data/elements that are being loaded
 //  to prevent the user intarface from breaking when data is still loading.
 //  this does not work well, it's better to create dummies right inside the components
+//  to make it work don't use conditional renders on parent, use it on last child where you conditionally render
+//  the dummy.
 
 
 import styled from "styled-components"
