@@ -19,7 +19,7 @@ const VideoCard = ({ e, viewsClickHandler }) => {
   return (
     <div>
 
-      <Video controls onClick={viewsClickHandler} preload="none" >
+      <Video controls onClick={viewsClickHandler} >
         <source src={e.videoURL} type="video/mp4" onClick={viewsClickHandler} />
         {/* <source src="mov_bbb.ogg" type="video/ogg" /> */}
         Your browser does not support HTML video.

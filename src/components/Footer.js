@@ -46,7 +46,7 @@ const Footer = () => {
         </FooterNav>
 
       </ContentWrapper>
-      <Copyright>Fullstack app. </Copyright>
+      <Copyright>Fullstack app by me :-) </Copyright>
     </FooterWrapper>
   )
 }
@@ -61,7 +61,7 @@ const Copyright = styled.p`
 const FooterWrapper = styled.footer`
   padding-left: 80px;
   color: ${p => p.theme.bgCol};
-  margin-top: 50vh;
+  margin-top: 100vh;
 
   @media (max-width: 800px) {
     padding-left: 0;
@@ -105,8 +105,9 @@ const P = styled(Paragraph)`
 const NavTitle = styled.div`
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 20px;
+  color: ${p => p.theme.fourthCol};
 `
 
 const Link = styled(LinkNeedsStyling)`

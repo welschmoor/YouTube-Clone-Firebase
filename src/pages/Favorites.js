@@ -8,6 +8,7 @@ import { SignUpInWrapper, MainWrapper } from "../STYLES/styleWrappers"
 import { Paragraph as P, Title } from "../STYLES/styleText"
 import { LinkStyled, SignInHighlightSpan } from "../STYLES/styleText"
 
+
 import FavoritesList from "../components/FavoritesList"
 
 
@@ -21,7 +22,9 @@ const Favorites = () => {
     <MainWrapper>
       {!user && <Title style={{ fontSize: "1.2rem" }}>Favorites Page</Title>}
       {user && <Title style={{ fontSize: "1.2rem" }}>Your Favorites</Title>}
-      
+
+     
+
       {user && (
         users && videos && <FavoritesList users={users} videos={videos} user={user} />
       )}
