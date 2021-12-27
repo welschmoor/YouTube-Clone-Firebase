@@ -104,8 +104,8 @@ const CreateNewVideo = () => {
       setFileError('Only .mp4 allowed!')
       return
     }
-    if (file.size > 10000000) {
-      setFileError('max file size: 10 MB')
+    if (file.size > 0) {
+      setFileError('max file size: 0 MB')
       return
     }
 

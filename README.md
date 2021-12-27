@@ -1,25 +1,7 @@
-todo:
-
-implement search results!
-
-footer 
-
-create individual channels /channel/:userUID
-
-redo the Likes, so that they are saved in DB
-
-Handle Signup/Login errors, password min length, DisplayName max length
-
-implement favorites list (probably by adding favorites to users collection? or creating a new collection "favorites" altogether? or use local storage?)
-
-I think it's better to do it by creating an array of favorited videos
-
-default avatar if person selects nothing.
-
-change Light Mode color contrast
 
 
 # YouTube Clone
+![alt text](https://repository-images.githubusercontent.com/438695360/998efc79-7239-488c-8df2-997818d30783)
 
 This is my attempt to make a YouTube clone using Firebase for backend.
 
@@ -39,3 +21,11 @@ Create a Firebase project on firebase.com. In /src/firebase/index.js change the 
 
 
 To run, in root folder run `npm install` and the site should be available on port localhost:3000
+
+
+### todo:
+
+
+create individual channels /channel/:userUID
+
+change Light Mode color contrast or add border
