@@ -152,7 +152,7 @@ const WatchWrapperGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 180px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     grid-template-columns: 1fr;
   }
 `

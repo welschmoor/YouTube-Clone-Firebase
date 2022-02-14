@@ -37,3 +37,7 @@ In root folder run `npm install`; the site should be available on localhost:3000
 - create individual channels /channel/:userUID
 
 - change Light Mode color contrast or add border
+
+- keyboard navigation
+
+- accessibility

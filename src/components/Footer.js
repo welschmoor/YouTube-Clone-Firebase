@@ -7,47 +7,51 @@ import LogoComponent from "./LogoComponent"
 
 const Footer = () => {
   return (
-    <FooterWrapper>
-      <WatchSeparator />
-      <LogoFlex>
-        <LogoComponent />
-      </LogoFlex>
+    <>
+      <FooterWrapper>
+        <WatchSeparator />
+        <FooterContent>
+          <LogoFlex>
+            <LogoComponent />
+          </LogoFlex>
 
-      <ContentWrapper>
+          <ContentWrapper>
 
-        <FooterNav>
-          <NavTitle>Links</NavTitle>
-          <UL>
-            <LI>
-              <Link to="/">home</Link>
-            </LI>
-            <LI>
-              <Link to="/favorites">favorites</Link>
-            </LI>
-            <LI>
-              <Link to="/about">about</Link>
-            </LI>
-          </UL>
-        </FooterNav>
+            <FooterNav>
+              <NavTitle>Links</NavTitle>
+              <UL>
+                <LI>
+                  <Link to="/">home</Link>
+                </LI>
+                <LI>
+                  <Link to="/favorites">favorites</Link>
+                </LI>
+                <LI>
+                  <Link to="/about">about</Link>
+                </LI>
+              </UL>
+            </FooterNav>
 
-        <FooterNav>
-          <NavTitle>More Links</NavTitle>
-          <UL>
-            <LI>
-              <Link to="/">Memory</Link>
-            </LI>
-            <LI>
-              <Link to="/favorites">Copyright</Link>
-            </LI>
-            <LI>
-              <Link to="/about">Data Protection</Link>
-            </LI>
-          </UL>
-        </FooterNav>
+            <FooterNav>
+              <NavTitle>More Links</NavTitle>
+              <UL>
+                <LI>
+                  <Link to="/">Memory</Link>
+                </LI>
+                <LI>
+                  <Link to="/favorites">Copyright</Link>
+                </LI>
+                <LI>
+                  <Link to="/about">Data Protection</Link>
+                </LI>
+              </UL>
+            </FooterNav>
 
-      </ContentWrapper>
-      <Copyright>Fullstack app by me :-) </Copyright>
-    </FooterWrapper>
+          </ContentWrapper>
+          <Copyright>Fullstack app by me :-) </Copyright>
+        </FooterContent>
+      </FooterWrapper>
+    </>
   )
 }
 
@@ -63,8 +67,14 @@ const FooterWrapper = styled.footer`
   color: ${p => p.theme.bgCol};
   margin-top: 100vh;
 
-  @media (max-width: 800px) {
-    padding-left: 0;
+  @media (max-width: 700px) {
+    padding-left: 0px;
+  }
+`
+
+const FooterContent = styled.div`
+    @media (max-width: 700px) {
+    padding-left: 20px;
   }
 `
 
