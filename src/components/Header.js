@@ -1,6 +1,6 @@
 
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link as NeedStylingNavLink, useNavigate } from "react-router-dom"
 
 // styles
@@ -11,16 +11,35 @@ import { IoMenuSharp, IoNotificationsOutline, IoAppsOutline, IoSettingsOutline, 
 
 import LogoComponent from "./LogoComponent"
 
+// speech recognition
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+
 
 const Header = ({ hamburgerClick, settingsHandler }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const navigate = useNavigate()
+
+  // speech recon
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
+  console.log("transcript", transcript)
 
   const submitHandler = (e) => {
     e.preventDefault()
     navigate(`/search/${searchTerm.trim().toLowerCase()}`)
     setSearchTerm('')
   }
+
+  useEffect(() => {
+    if (transcript.length > 1) {
+      navigate(`/search/${transcript.trim().toLowerCase()}`)
+    }
+  }, [transcript])
 
   return (
     <Wrapper >
@@ -31,7 +50,7 @@ const Header = ({ hamburgerClick, settingsHandler }) => {
       <SearchForm onSubmit={submitHandler} name="searchform">
         <SearchButton name="search_button" aria-label="search_button" > <SearchIcon /> </SearchButton>
         <SearchInput type="text" name="searchinput" id="" placeholder="Search" required onChange={e => setSearchTerm(e.target.value)} value={searchTerm} />
-        <IconMic />
+        <IconMic onClick={listening ? SpeechRecognition.stopListening : SpeechRecognition.startListening} recordingbool={listening} />
       </SearchForm>
       <IconWrapper>
         <IconNotifications></IconNotifications>
@@ -139,7 +158,6 @@ const Link = styled(NeedStylingNavLink)`
   color: white;
 `
 
-
 ////////////////////////////////////
 //          ICONS  
 const IconWrapper = styled.div`
@@ -188,6 +206,7 @@ const SearchIcon = styled(IoSearch)`
   color: ${p => p.theme.textCol};
   transform: translate(1px, 2px);
 `
+
 const IconMic = styled(IoMic)`
   font-size: 1.3rem;
   cursor: pointer; 
@@ -195,6 +214,8 @@ const IconMic = styled(IoMic)`
   @media (max-width: 800px ) {
   display: none;
   }
+
+  color: ${p => p.recordingbool ? "red" : ""}; 
 `
 
 export default Header
