@@ -49,7 +49,7 @@ const Signup = () => {
             <Input type="password" name="password" id="password" required onChange={(e) => setPassword(e.target.value)} value={password} />
           </LabelInputGroup>
 
-          <SignUpBtn type="submit" >Log In</SignUpBtn>
+          <SignUpBtn type="submit" disabled={isPending} >{isPending ? "Logging in..." : "Log In"}</SignUpBtn>
         </Form>
       </SignUpInGrid>
     </SignUpInWrapper>
