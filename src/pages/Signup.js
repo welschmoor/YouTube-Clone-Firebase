@@ -93,7 +93,7 @@ const Signup = () => {
               <Input type="file" name="avatar" id="file" avatar onChange={fileInputHandler} style={{ display: "none" }} />
             </FileLabel>
           </LabelInputGroup>
-          <SignUpBtn>Sign Up!</SignUpBtn>
+          <SignUpBtn disabled={isPending}>{isPending ? "Please wait!" : "Sign Up!"}</SignUpBtn>
         </Form>
       </SignUpInGrid>
     </SignUpInWrapper>
