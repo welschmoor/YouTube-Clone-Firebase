@@ -19,6 +19,7 @@ const CreateNewVideo = () => {
   const [file, setFile] = useState(null)
   const [thumbnail, setThumbnail] = useState(null)
   const [fileError, setFileError] = useState(null)
+  const [loadingB, setLoadingB] = useState(false)
 
 
   const [error, setError] = useState(null)
@@ -29,8 +30,10 @@ const CreateNewVideo = () => {
 
   const submitHandler = async e => {
     e.preventDefault()
+    setLoadingB(true)
 
     if (!videoTitle || !videoDescription || !file) {
+      setLoadingB(false)
       setError("Fill out all fields of the form!")
       console.log("If you see this message, it means either the file, title or video description do not exist")
       return
@@ -79,11 +82,12 @@ const CreateNewVideo = () => {
         createdBy: createdBy,
         createdAt: timestamp.fromDate(new Date()),
       })
-
+      setLoadingB(false)
       navigate('/')
       console.log("Video Submitted")
     }
     catch (error) {
+      setLoadingB(false)
       console.log("SubmitVideoError:", error)
       setError(error.message)
     }
@@ -162,7 +166,7 @@ const CreateNewVideo = () => {
             <Input type="file" name="thumbnail" id="thumbnail" onChange={thumbnailInputHandler} required />
           </LabelInputGroup>
           <LabelInputGroup>
-            <SignUpBtn>Upload Video</SignUpBtn>
+            <SignUpBtn disabled={loadingB}>{loadingB ? "uploading..." : "Upload Video"}</SignUpBtn>
           </LabelInputGroup>
         </Form>
       </ContentWrapper>
