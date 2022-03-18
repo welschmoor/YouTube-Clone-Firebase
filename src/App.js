@@ -14,6 +14,7 @@ import MobileSidebar from "./components/MobileSidebar"
 import Footer from "./components/Footer"
 import SettingsModal from "./components/SettingsModal"
 
+import Channel from "./pages/Channel"
 import Watch from "./pages/Watch"
 import Home from "./pages/Home"
 import About from "./pages/About"
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
                 <Route path="/create" element={user ? <CreateNewVideo /> : <Navigate to="/" />} />
+                <Route path="/channel/:cid" element={<Channel />} />
                 <Route path="/watch/:id" element={<Watch />} />
                 <Route path="/search/:query" element={<Search />} />
                 <Route path="*" element={<Page404 />} />

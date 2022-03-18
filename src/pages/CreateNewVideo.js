@@ -91,7 +91,7 @@ const CreateNewVideo = () => {
       console.log("SubmitVideoError:", error)
       setError(error.message)
     }
-  }
+  } //end submitHandler
 
 
   const fileInputHandler = (e) => {
@@ -138,8 +138,6 @@ const CreateNewVideo = () => {
 
     setThumbnail(file)
   }
-
-
 
 
   return (
@@ -193,7 +191,6 @@ const LabelInputGroup = styled(LabelInputGroupUnstyled)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 `
 
 const Title = styled.h4`
@@ -201,7 +198,6 @@ const Title = styled.h4`
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-
 `
 
 export default CreateNewVideo

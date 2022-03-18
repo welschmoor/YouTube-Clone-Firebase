@@ -68,8 +68,8 @@ const VideoThumbnailCard = ({ e }) => {
         <TitleAndChannelName>
           <Link to={`/watch/${e.id}`} ><VideoTitle>{e.videoTitle}</VideoTitle></Link>
           <ChannelNameAndViews>
-            {displayName && <ChannelName>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
-            {displayName && <ChannelName>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</ChannelName>}
+            {displayName && <ChannelName to={`/channel/${displayName}`}>{displayName} <IoCheckmarkCircleSharp /></ChannelName>}
+            {displayName && <GreyText>{e.views.toLocaleString()} Views &nbsp;<strong>::</strong>&nbsp; {e.createdAt && formatDistanceToNow(e.createdAt.toDate(), { addSuffix: true })}</GreyText>}
           </ChannelNameAndViews>
         </TitleAndChannelName>
       </ChannelGrid>
@@ -132,7 +132,16 @@ const AvatarDiv = styled.div`
 
 `
 
-const ChannelName = styled.h6`
+const ChannelName = styled(LinkNeedsStyle)`
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: ${p => p.theme.fourthCol};
+  display: flex;
+  gap: 4px;
+  text-decoration: none;
+`
+
+const GreyText = styled.h6`
   font-size: 0.8rem;
   font-weight: 400;
   color: ${p => p.theme.fourthCol};
